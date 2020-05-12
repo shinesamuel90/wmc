@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +30,8 @@ export class LoginPage implements OnInit {
   
   constructor(private formBuilder: FormBuilder,
     private router: Router,
-    private menuController: MenuController
+    private menuController: MenuController,
+    private authService:AuthService
     ) { 
     this.loginForm = this.formBuilder.group({
       // username: ['', [Validators.required,Validators.email]],
@@ -44,8 +46,8 @@ export class LoginPage implements OnInit {
   logForm(){
     this.submitted = true;
     console.log(this.loginForm.value.username)
-    this.router.navigate(['/view-articles'])
-
+    //this.router.navigate(['/view-articles'])
+this.authService.SignIn(this.loginForm.value.username,this.loginForm.value.password)
   }
   ionViewWillEnter() {
    
