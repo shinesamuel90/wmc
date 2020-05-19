@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,18 @@ const routes: Routes = [
   {
     path: 'view-articles',
     loadChildren: () => import('./pages/view-articles/view-articles.module').then( m => m.ViewArticlesPageModule)
+  },
+  {
+    path: 'gallery',
+    loadChildren: () => import('./pages/gallery/gallery.module').then( m => m.GalleryPageModule)
+  },
+  {
+    path: 'committee-members',
+    loadChildren: () => import('./pages/committee-members/committee-members.module').then( m => m.CommitteeMembersPageModule)
+  },
+  {
+    path: 'members',
+    loadChildren: () => import('./pages/members/members.module').then( m => m.MembersPageModule)
   }
 ];
 

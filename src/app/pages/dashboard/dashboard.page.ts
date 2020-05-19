@@ -10,9 +10,9 @@ export class DashboardPage implements OnInit {
   public selectedIndex = 0;
   public appPages = [
     {
-      title: 'Inbox',
-      url: '/folder/Inbox',
-      icon: 'mail'
+      title: 'Articles',
+      url: '/view-articles',
+      icon: 'book-outline'
     },
     {
       title: 'Outbox',

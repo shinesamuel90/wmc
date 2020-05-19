@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 
 import { Platform, MenuController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -15,36 +15,32 @@ export class AppComponent implements OnInit {
     {
       title: 'Articles',
       url: '/view-articles',
-      icon: 'mail'
+      icon: 'book'
     },
     {
-      title: 'Outbox',
-      url: '/folder/Outbox',
-      icon: 'paper-plane'
+      title: 'Committee Members',
+      url: '/committee-members',
+      icon: 'people'
+      
     },
     {
-      title: 'Favorites',
-      url: '/folder/Favorites',
-      icon: 'heart'
+      title: 'Members',
+      url: '/members',
+      icon: 'people-circle'
+     
     },
     {
-      title: 'Archived',
-      url: '/folder/Archived',
-      icon: 'archive'
-    },
-    {
-      title: 'Trash',
-      url: '/folder/Trash',
-      icon: 'trash'
-    },
-    {
-      title: 'Spam',
-      url: '/folder/Spam',
-      icon: 'warning'
+      title:'gallery',
+      url:'/gallery',
+      icon:'image'
     }
+
+    
+    
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-
+  //@ViewChild(Tabs, { read: ElementRef }) tabs: ElementRef;
+  tabshow:boolean;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -68,5 +64,10 @@ export class AppComponent implements OnInit {
     }
    
   }
-
+  ngAfterViewInit() {
+  
+     // do stuff
+     this.tabshow=true;
+  
+}
 }
