@@ -33,8 +33,12 @@ export class AppComponent implements OnInit {
       title:'gallery',
       url:'/gallery',
       icon:'image'
+    },
+    {
+      title:'profile',
+      url:'/profile',
+      icon:'person'
     }
-
     
     
   ];
