@@ -1,19 +1,53 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
+import { RouterModule, Routes } from '@angular/router';
 import { DashboardPage } from './dashboard.page';
 
 const routes: Routes = [
   {
+    path: 'tabs',
+    component: DashboardPage,
+    children: [
+      {
+      path: 'view-articles',
+        loadChildren: () => import('../view-articles/view-articles.module').then( m => m.ViewArticlesPageModule)
+      },
+      {
+        path: 'gallery',
+        loadChildren: () => import('../gallery/gallery.module').then( m => m.GalleryPageModule)
+      },
+      {
+        path: 'committee-members',
+        loadChildren: () => import('../committee-members/committee-members.module').then( m => m.CommitteeMembersPageModule)
+      },
+      {
+        path: 'members',
+        loadChildren: () => import('../members/members.module').then( m => m.MembersPageModule)
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('../profile/profile.module').then( m => m.ProfilePageModule)
+      },
+      
+  // {
+  //   path: 'gallery',
+  //   loadChildren: () => import('../gallery/gallery.module').then( m => m.GalleryPageModule)
+  // },
+      {
+        path: '',
+        redirectTo: '/tabs/view-articles',
+        pathMatch: 'full'
+      }
+    ]
+  },
+  {
     path: '',
-    component: DashboardPage
+    redirectTo: 'tabs/view-articles',
+    pathMatch: 'full'
   }
- 
-  
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class DashboardPageRoutingModule {}

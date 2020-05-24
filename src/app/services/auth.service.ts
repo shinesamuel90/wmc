@@ -36,7 +36,7 @@ export class AuthService {
         if (result.user.emailVerified !== true&&result1.enable) {
           localStorage.setItem('user', JSON.stringify(result.user));
           JSON.parse(localStorage.getItem('user'));
-          this.router.navigate(['view-articles']);
+          this.router.navigate(['dashboard']);
           
         }
         else if(result.user.emailVerified == true && result1.enable) {
@@ -44,7 +44,7 @@ export class AuthService {
           
           localStorage.setItem('user', JSON.stringify(result.user));
           JSON.parse(localStorage.getItem('user'));
-          this.router.navigate(['view-articles']);
+          this.router.navigate(['dashboard']);
         }//else closing
         else{
           // this.snackBar.open("user account not enabled", "action", {

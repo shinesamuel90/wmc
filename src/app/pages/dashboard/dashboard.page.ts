@@ -11,34 +11,33 @@ export class DashboardPage implements OnInit {
   public appPages = [
     {
       title: 'Articles',
-      url: '/view-articles',
-      icon: 'book-outline'
+      url: '/dashboard/tabs/view-articles',
+      icon: 'book'
     },
     {
-      title: 'Outbox',
-      url: '/folder/Outbox',
-      icon: 'paper-plane'
+      title: 'Committee Members',
+      url: '/dashboard/tabs/committee-members',
+      icon: 'people'
+      
     },
     {
-      title: 'Favorites',
-      url: '/folder/Favorites',
-      icon: 'heart'
+      title: 'Members',
+      url: '/dashboard/tabs/members',
+      icon: 'people-circle'
+     
     },
     {
-      title: 'Archived',
-      url: '/folder/Archived',
-      icon: 'archive'
+      title:'gallery',
+      url:'/dashboard/tabs/gallery',
+      icon:'image'
     },
     {
-      title: 'Trash',
-      url: '/folder/Trash',
-      icon: 'trash'
-    },
-    {
-      title: 'Spam',
-      url: '/folder/Spam',
-      icon: 'warning'
+      title:'profile',
+      url:'/dashboard/tabs/profile',
+      icon:'person'
     }
+    
+    
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor(  ) { }

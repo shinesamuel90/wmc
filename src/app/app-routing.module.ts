@@ -3,17 +3,17 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
+  // {
+  //   path: '',
+  //   redirectTo: 'tab',
+  //   pathMatch: 'full'
+  // },
+  // {
+  //   path: 'folder/:id',
+  //   loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+  // },
   {
     path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
-  {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
-  },
-  {
-    path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
@@ -23,31 +23,34 @@ const routes: Routes = [
   {
     path: 'forgot-password',
     loadChildren: () => import('./pages/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
-  },
+  }
+  ,
   {
     path: 'dashboard',
     loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
-  },
-  {
-    path: 'view-articles',
-    loadChildren: () => import('./pages/view-articles/view-articles.module').then( m => m.ViewArticlesPageModule)
-  },
-  {
-    path: 'gallery',
-    loadChildren: () => import('./pages/gallery/gallery.module').then( m => m.GalleryPageModule)
-  },
-  {
-    path: 'committee-members',
-    loadChildren: () => import('./pages/committee-members/committee-members.module').then( m => m.CommitteeMembersPageModule)
-  },
-  {
-    path: 'members',
-    loadChildren: () => import('./pages/members/members.module').then( m => m.MembersPageModule)
-  },
-  {
-    path: 'profile',
-    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
   }
+  // ,
+  // {
+  //   path: 'view-articles',
+  //   loadChildren: () => import('./pages/view-articles/view-articles.module').then( m => m.ViewArticlesPageModule)
+  // },
+  // {
+  //   path: 'gallery',
+  //   loadChildren: () => import('./pages/gallery/gallery.module').then( m => m.GalleryPageModule)
+  // },
+  // {
+  //   path: 'committee-members',
+  //   loadChildren: () => import('./pages/committee-members/committee-members.module').then( m => m.CommitteeMembersPageModule)
+  // },
+  // {
+  //   path: 'members',
+  //   loadChildren: () => import('./pages/members/members.module').then( m => m.MembersPageModule)
+  // },
+  // {
+  //   path: 'profile',
+  //   loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
+  // }
+
 ];
 
 @NgModule({
