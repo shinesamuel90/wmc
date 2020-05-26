@@ -1,0 +1,39 @@
+.gallery
+{
+    font-family: 'Bree Serif', serif;
+    .center-cropped {
+        width: 43vw;
+        height: 43vw;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 11px;
+        box-shadow: 1px 2px 5px #66666680;
+
+        .gradiant
+        {
+           
+          background-image: linear-gradient(180deg, #ffffff24 0%, #6284ff00 50%, rgba(37, 27, 27, 0.6705882352941176) 100%);
+          position: absolute;
+      
+          z-index: 17;
+          width: 43vw;
+          height: 43vw;
+          border-radius: 11px;
+
+          p
+          {
+            position: absolute;
+            bottom: 1px;
+            left: 3px;
+            color: #fff;
+            font-size: 12px;
+          }
+         
+        }
+      }
+
+}
+
+
+

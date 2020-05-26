@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+        <div text-center>
+          <h4>Login Form</h4>
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="logForm()">
+        <div padding>
+         
+          <ion-item>
+            <ion-input type="email" formControlName="username" placeholder="Username" ></ion-input>
+          </ion-item>
+          <p class="error-text" *ngIf=" submitted&&loginForm.controls.username.errors?.required">Username is required!.</p>
+          <p class="error-text" *ngIf=" submitted&&loginForm.controls.username.errors?.email">Username has to be a valid email address.</p>
+          <ion-item>
+            <ion-input type="password" formControlName="password" placeholder="Password"></ion-input>
+          </ion-item>
+          <p class="error-text" *ngIf=" submitted&&loginForm.controls.password.errors?.required">Password is required!.</p>
+        </div>
+  
+        <div padding>
+          <ion-button type="submit" [disabled]="!loginForm.valid" size="large" href="/touchid" expand="block">Login</ion-button>
+        </div>
+      </form>
+      </ion-col>
+      
+    </ion-row>
+    <ion-row>
+     <span routerLink="/forgot-password">Forgot Password?</span>
+ 
+    <span>Don't have an account?<span class="redirect" routerLink="/sign-up"> Sign Up</span></span>
+
+  
+    </ion-row>
+  </ion-grid>
+</ion-content>

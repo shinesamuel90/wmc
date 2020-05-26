@@ -1,0 +1,95 @@
+.login-container
+{ 
+    font-family: 'Bree Serif', serif;
+
+
+        background-color: #f6f6f6;
+        height: 100vh;
+
+    
+  
+    .login
+    {
+        .pro-image
+        {
+            margin: auto;
+            display: block;
+            border-radius: 38px;
+            box-shadow: 1px 2px 3px #1f4287;
+        }
+        .align1
+        {
+            width: 51px;
+        }
+        .align2
+        {
+            width: 60px;
+        }
+        .align3
+        {
+            width: 79px;
+        }
+        .logo
+        {
+            max-width: auto;
+            display: block;
+            text-align: center;
+            margin-top: 14vh;
+            
+        }
+        .align4
+        {
+            width: 60px;
+            left: -69px;
+            position: relative;
+        }
+        .align5
+        {
+            width: 30px;
+        }
+        .login-text
+        {
+          text-align: center;
+          font-weight: bold;
+          font-family: 'Bree Serif', serif;
+        }
+        .login-head
+        {
+          
+            text-align: center;
+            font-weight: bold;
+            font-family: 'Bree Serif', serif;
+        }
+        .login-input
+        {
+            background-color: #fff;
+            margin-bottom: 7px;
+            border-radius: 6px;
+        }
+       .info1
+       {
+           text-align: center;
+           display: flex;
+       }
+     
+    }
+
+    .floating-animation {
+        animation-name: floating-2 !important;
+        animation-direction: alternate;
+        animation-iteration-count: infinite;
+        animation-play-state: running;
+        animation-timing-function: ease-in-out;
+        animation-delay: -2.2s;
+        animation-duration: 2.5s;
+        transition-delay: .6s;
+    }
+    @keyframes floating-2 {
+        from {
+          transform: translateY(5px) rotate3d(0, 0, 1, 0deg)
+        }
+        to {
+          transform: translateY(-5px) rotate3d(0, 0, 1, 0deg)
+        }
+      }
+}

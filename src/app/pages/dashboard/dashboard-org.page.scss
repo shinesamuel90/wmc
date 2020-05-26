@@ -1,6 +1,5 @@
 ion-menu ion-content {
     --background: var(--ion-item-background, var(--ion-background-color, #fff));
-    font-family: 'Bree Serif', serif;
   }
   
   ion-menu.md ion-content {
@@ -12,7 +11,6 @@ ion-menu ion-content {
   
   ion-menu.md ion-list {
     padding: 20px 0;
-    font-family: 'Bree Serif', serif;
   }
   
   ion-menu.md ion-note {
@@ -49,11 +47,10 @@ ion-menu ion-content {
     --padding-start: 10px;
     --padding-end: 10px;
     border-radius: 4px;
-    font-family: 'Bree Serif', serif;
   }
   
   ion-menu.md ion-item.selected {
-    --background: rgba(39, 142, 165, 0.21);
+    --background: rgba(var(--ion-color-primary-rgb), 0.14);
   }
   
   ion-menu.md ion-item.selected ion-icon {

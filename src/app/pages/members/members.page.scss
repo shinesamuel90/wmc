@@ -1,0 +1,39 @@
+ion-content
+{
+    margin: 10px;
+    .member-list
+    {
+        margin: 17px;
+        padding: 9px;
+        border-radius: 11px;
+        box-shadow: 1px 1px 11px 1px #eaeaea;
+        background-color: white;
+     .pro-image
+     {
+        border-radius: 50%;
+        width: 61px;
+        height: 61px;
+        box-shadow: 1px 2px 10px #1f42874f;
+     }
+     ion-label
+     {
+         margin: 0px;
+         font-size: 1.2em;
+         font-weight: 500;
+         font-family: 'Bree Serif', serif;
+     }
+     .desig
+     {
+         margin: 0px;
+         font-family: 'Bree Serif', serif;
+     }
+     .desig2
+     {
+        margin: 0px;
+        margin: 0px;
+        font-size: 11px;
+        color: #87898a;
+        font-family: "Open Sans", sans-serif;
+     }
+    }
+}

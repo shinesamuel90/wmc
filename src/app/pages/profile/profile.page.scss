@@ -1,0 +1,45 @@
+.parent-card
+{
+    ion-card-header
+    {
+
+    .profile-head
+    {
+           h3
+           {
+               margin: 0px;
+               font-family: 'Bree Serif', serif;
+           }
+           p
+           {   margin: 0px;
+               margin-top: 5px;
+               font-family: 'Bree Serif', serif;
+           }
+  
+
+        img.pro-image
+        {
+            width: 80px;
+            height: 80px;
+            border-radius: 11%;
+            margin: auto;
+
+            
+        }
+    }
+    }
+
+  .profile-contant
+  {
+    ion-label
+      {
+         font-size:12px;
+      }
+      p
+      {
+        font-weight: 300;
+        font-family: 'Bree Serif', serif;
+      }
+  }
+
+}

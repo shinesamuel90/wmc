@@ -24,3 +24,47 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+
+ion-card-title , ion-card-subtitle 
+{
+  font-family: 'Bree Serif', serif;
+}
+ion-card
+{
+    font-family: "Open Sans", sans-serif;
+}
+
+.primary-color
+{
+  color: #1f4287;
+}
+.secondary-color
+{
+  color: #278ea5;
+}
+.content-color
+{
+  color: #252525;
+}
+
+.login-btn{
+  --background: rgba(169,3,41,1);
+  --background: -moz-linear-gradient(left, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%);
+  --background: -webkit-gradient(left top, right top, color-stop(0%, rgba(169,3,41,1)), color-stop(44%, rgba(143,2,34,1)), color-stop(100%, rgba(109,0,25,1)));
+  --background: -webkit-linear-gradient(left, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%);
+  --background: -o-linear-gradient(left, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%);
+  --background: -ms-linear-gradient(left, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%);
+  --background: linear-gradient(to right, #1f4287 0%, #1f4287 44%, #278ea5 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019', GradientType=1 );
+
+  width: 60%;
+  margin: auto;
+  --border-radius: 9px;
+  height: 46px;
+
+
+
+  --color:#ffffff;
+}

@@ -1,43 +1,92 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-title>login</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content>
+<ion-content >
   <ion-grid>
+    <div class="login-container">  
     <ion-row justify-content-center>
       <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-        <div text-center>
-          <h4>Login Form</h4>
-        </div>
+      
         <form [formGroup]="loginForm" (ngSubmit)="logForm()">
-        <div padding>
+        <div padding class="login">
+
+
+          <ion-row>
          
-          <ion-item>
-            <ion-input type="email" formControlName="username" placeholder="Username" ></ion-input>
-          </ion-item>
+        
+            <!-- <ion-col size="12">
+              <img src="assets/images/pro2.png" class="pro-image align5 floating-animation" />
+            </ion-col> -->
+         
+            </ion-row>
+          <ion-row>
+         
+              <!-- <ion-col size="8">
+                <img src="assets/images/pro1.png" class="pro-image align1 floating-animation" />
+              </ion-col>
+              <ion-col size="4">
+                <img src="assets/images/pro2.png" class="pro-image align4 floating-animation" />
+              </ion-col> -->
+           
+              </ion-row>
+          <ion-row >
+            <ion-col size="4">
+       
+              </ion-col>
+              <ion-col size="4">
+                <img src="assets/images/logo.png" class="logo  floating-animation" />
+              </ion-col>
+              <ion-col size="4">
+            
+              </ion-col>
+              <ion-col size="12">
+                <p class="secondary-color login-text">Login</p>
+               <h3 class="primary-color login-head"> World Malayalee Council</h3>
+              </ion-col>
+           
+              </ion-row>
+     
+            <ion-input type="email" formControlName="username" placeholder="Username" class="login-input"></ion-input>
+       
           <p class="error-text" *ngIf=" submitted&&loginForm.controls.username.errors?.required">Username is required!.</p>
           <p class="error-text" *ngIf=" submitted&&loginForm.controls.username.errors?.email">Username has to be a valid email address.</p>
-          <ion-item>
-            <ion-input type="password" formControlName="password" placeholder="Password"></ion-input>
-          </ion-item>
+       
+            <ion-input type="password" formControlName="password" placeholder="Password" class="login-input"></ion-input>
+        
           <p class="error-text" *ngIf=" submitted&&loginForm.controls.password.errors?.required">Password is required!.</p>
         </div>
   
         <div padding>
-          <ion-button type="submit" [disabled]="!loginForm.valid" size="large" href="/touchid" expand="block">Login</ion-button>
+          <ion-button type="submit" [disabled]="!loginForm.valid"   href="/touchid" expand="block" class="login-btn">Login</ion-button>
+        
         </div>
       </form>
       </ion-col>
       
     </ion-row>
     <ion-row>
-     <span routerLink="/forgot-password">Forgot Password?</span>
+      <ion-col size="12">
+     <p routerLink="/forgot-password" class="info1" style="text-align: center;
+     margin: 0px;
+     margin-bottom: 10px;
+     font-size: 13px;
+     color: #278ea5;">Forgot Password?</p>
  
-    <span>Don't have an account?<span class="redirect" routerLink="/sign-up"> Sign Up</span></span>
-
+    <p class="info1" style="text-align: center;
+    margin: 0px;
+    margin-bottom: 4px;
+    font-weight: bold;
+    color: #1f4287;">Don't have an account?</p><p class="redirect info1" style="    text-align: center;
+    margin: 0px;
+    margin-bottom: 4px;
+    font-weight: bold;
+    color: #278ea5;" routerLink="/sign-up"> Sign Up</p>
+ </ion-col>
   
     </ion-row>
+  </div>
   </ion-grid>
 </ion-content>
