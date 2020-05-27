@@ -16,11 +16,11 @@
 
   <div id="container">
  
-    <ion-card class="parent-card">
+    <ion-card class="parent-card" *ngFor="let article of articles | async">
       <ion-card-header>
-        <p>4 hrs ago</p>
-        <ion-card-title class="primary-color">Organisational Discipline, Ethics and Democratic Functioning</ion-card-title>
-        <ion-card-subtitle class="secondary-color">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </ion-card-subtitle>
+        <p>{{article.createdAt.toDate() | date: 'medium'  }}</p>
+        <ion-card-title class="primary-color">{{article.title}}</ion-card-title>
+        <ion-card-subtitle class="secondary-color">{{article.subtitle}} </ion-card-subtitle>
       
       </ion-card-header>
 
@@ -28,12 +28,7 @@
     
       <ion-card-content class="content-color">
         <img src="assets/images/image1.jpg" class="card-image" />
-        An organisation to be effective in its functioning need to be disciplined and
-        should have a clear and well defined unity of command. Also the rules of
-        functioning and operational limits should be specified through rules. In the
-        present scenario, discipline in WMC is a very loose concept. Our byelaws
-        have some lacuna which is responsible for the evolution of the present
-        culture in WMC.
+       {{article.description}}
       </ion-card-content>
 
 
@@ -57,7 +52,7 @@
     </ion-card>
 
 
-    <ion-card class="parent-card">
+    <!-- <ion-card class="parent-card">
       <ion-card-header>
         <p>6 hrs ago</p>
         <ion-card-title class="primary-color">Organisational Discipline, Ethics and Democratic Functioning</ion-card-title>
@@ -101,11 +96,11 @@
       
       </ion-row>
   
-    </ion-card>
+    </ion-card> -->
 
 
 
-    <ion-card class="parent-card">
+    <!-- <ion-card class="parent-card">
       <ion-card-header>
          <p>10 hrs ago</p>
         <ion-card-title class="primary-color">Organisational Discipline, Ethics and Democratic Functioning</ion-card-title>
@@ -143,7 +138,7 @@
       
       </ion-row>
   
-    </ion-card>
+    </ion-card> -->
     
    
     

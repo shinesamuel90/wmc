@@ -17,6 +17,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AuthService } from './services/auth.service';
+import { ArticleService } from './services/article.service';
+import { MembersService } from './services/members.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,7 +38,7 @@ import { AuthService } from './services/auth.service';
   providers: [
     StatusBar,
     SplashScreen,
-    AuthService,
+    AuthService,ArticleService,MembersService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
