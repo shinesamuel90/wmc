@@ -16,4 +16,11 @@ export class MembersService {
     return this.firestore.collection('users');
     
  }
+ getCommitteeMembers(){
+
+  return this.firestore.collection('users',ref=>ref.where('is_committee_member', '==', 'Yes'));
+
+// Create a query against the collection
+
+ }
 }
