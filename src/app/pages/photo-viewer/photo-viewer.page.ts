@@ -26,18 +26,20 @@ export class PhotoViewerPage implements OnInit {
     spaceBetween: 20
   };
   constructor(private route: ActivatedRoute,private router: Router) { 
-    this.route.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation().extras) {
-        this.photos= this.router.getCurrentNavigation().extras;
-      }
-    });
+    // this.route.queryParams.subscribe(params => {
+    //   if (this.router.getCurrentNavigation().extras.state) {
+    //     this.photos= this.router.getCurrentNavigation().extras.state.album;
+    //   }
+    // });
     
   }
   
-  ngOnInit() {
-//     this.route.params.subscribe(params => {
-//       this.photos = params['photos']; 
-//  });
+  //  ngOnInit(){}
+  ngOnInit(){
+
+if (this.route.snapshot.data['special']) {
+  this.photos = this.route.snapshot.data['special'];
+}
  console.log(this.photos);
  this.sliderOne =
     {
@@ -53,6 +55,28 @@ export class PhotoViewerPage implements OnInit {
       isEndSlide: false,
       slidesItems: this.photos
     };
+  }
+  ionViewDidEnter(){
+    console.log("ion view working");
+    if (this.route.snapshot.data['special']) {
+      this.photos = this.route.snapshot.data['special'];
+    }
+     console.log(this.photos);
+     this.sliderOne =
+        {
+          isBeginningSlide: true,
+          isEndSlide: false,
+          slidesItems:this.photos
+          
+        };
+        //Item object for Food
+        this.sliderTwo =
+        {
+          isBeginningSlide: true,
+          isEndSlide: false,
+          slidesItems: this.photos
+        };
+    
   }
 //Move to Next slide
 slideNext(object, slideView) {
@@ -89,6 +113,8 @@ checkisEnd(object, slideView) {
     object.isEndSlide = istrue;
   });
 }
-
+// ngOnDestroy(){
+//   this.photos.reset();
+// } 
 
 }

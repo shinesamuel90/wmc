@@ -20,6 +20,8 @@ import { AuthService } from './services/auth.service';
 import { ArticleService } from './services/article.service';
 import { MembersService } from './services/members.service';
 import { GalleryService } from './services/gallery.service';
+import { AlbumdataService } from './services/albumdata.service';
+import { AlbumDataResolverService } from './resolver/album-data-resolver.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -43,7 +45,7 @@ import { GalleryService } from './services/gallery.service';
     ArticleService,
     MembersService,
     GalleryService,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+       { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
 })

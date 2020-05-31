@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardPage } from './dashboard.page';
+import { AlbumDataResolverService } from 'src/app/resolver/album-data-resolver.service';
 
 const routes: Routes = [
   {
@@ -29,7 +30,10 @@ const routes: Routes = [
       },
       
   {
-    path: 'photo-viewer',
+    path: 'photo-viewer/:id',
+    resolve: {
+      special: AlbumDataResolverService
+    },
     loadChildren: () => import('../photo-viewer/photo-viewer.module').then( m => m.PhotoViewerPageModule)
   },
       
