@@ -31,6 +31,11 @@ const routes: Routes = [
   }
   // ,
   // {
+  //   path: 'photo-viewer',
+  //   loadChildren: () => import('./pages/photo-viewer/photo-viewer.module').then( m => m.PhotoViewerPageModule)
+  // }
+  // ,
+  // {
   //   path: 'view-articles',
   //   loadChildren: () => import('./pages/view-articles/view-articles.module').then( m => m.ViewArticlesPageModule)
   // },

@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>photo-viewer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+
+<ion-slides [options]="slideOptsOne" #slideWithNav  (ionSlideDidChange)="SlideDidChange(sliderOne,slideWithNav)">
+  <ion-slide *ngFor="let photo of sliderOne.slidesItems">
+      <img src="{{photo.url}}">
+   </ion-slide>
+</ion-slides>
+
+
+</ion-col>
+
+</ion-row>
+</ion-grid>
+<h5>Slider with Space Between</h5>
+
+   <ion-grid>
+    <ion-row>
+      <ion-col size="1">
+        <span class="slider-nav arrow-prev" (click)="slidePrev(slideOptsTwo,slideWithNav2)">
+          <div class="prev-icon-custom custon-nav" [class.disabled]="sliderTwo.isBeginningSlide"></div>
+        </span>
+      </ion-col>
+      <ion-col size="10">
+
+        <ion-slides pager="false" [options]="slideOptsTwo" #slideWithNav2
+          (ionSlideDidChange)="SlideDidChange(slideOptsTwo,slideWithNav2)">
+          <ion-slide *ngFor="let photo of sliderTwo.slidesItems">
+            <img src="{{photo.url}}">
+          </ion-slide>
+        </ion-slides>
+
+      </ion-col>
+      <ion-col size="1">
+        <span class="slider-nav arrow-next" (click)="slideNext(sliderTwo,slideWithNav2)">
+          <div class="next-icon-custom custon-nav" [class.disabled]="sliderTwo.isEndSlide"></div>
+        </span>
+      </ion-col>
+    </ion-row>
+  </ion-grid> 
+
+</ion-content>

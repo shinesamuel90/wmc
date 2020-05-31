@@ -3,7 +3,7 @@
     font-family: 'Bree Serif', serif;
 
 
-        background-color: #f6f6f6;
+        background-color: #fff;
         height: 100vh;
 
     
@@ -59,10 +59,14 @@
             text-align: center;
             font-weight: bold;
             font-family: 'Bree Serif', serif;
+            margin-top: 26vh;
+            color: #2d2c2c;
+            font-size: 1.5em;
+            margin-bottom: 17px;
         }
         .login-input
         {
-            background-color: #fff;
+            background-color: #f7f7f7;
             margin-bottom: 7px;
             border-radius: 6px;
         }

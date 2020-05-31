@@ -28,6 +28,11 @@ const routes: Routes = [
         loadChildren: () => import('../profile/profile.module').then( m => m.ProfilePageModule)
       },
       
+  {
+    path: 'photo-viewer',
+    loadChildren: () => import('../photo-viewer/photo-viewer.module').then( m => m.PhotoViewerPageModule)
+  },
+      
   // {
   //   path: 'gallery',
   //   loadChildren: () => import('../gallery/gallery.module').then( m => m.GalleryPageModule)
