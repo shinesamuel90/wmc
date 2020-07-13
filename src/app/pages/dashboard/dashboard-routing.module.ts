@@ -35,6 +35,13 @@ const routes: Routes = [
       special: AlbumDataResolverService
     },
     loadChildren: () => import('../photo-viewer/photo-viewer.module').then( m => m.PhotoViewerPageModule)
+  } ,
+  {
+    path: 'pdf-viewer/:id',
+    resolve: {
+      special: AlbumDataResolverService
+    },
+    loadChildren: () => import('../pdf-viewer/pdf-viewer.module').then( m => m.PdfViewerPageModule)
   },
       
   // {
