@@ -6,11 +6,14 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
-
+import { Platform } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+ 
+  authState = new BehaviorSubject(false);
   private eventAuthError = new BehaviorSubject<string>("");
   constructor(public db: AngularFireDatabase,
     public afs: AngularFirestore,   // Inject Firestore service
@@ -19,7 +22,22 @@ export class AuthService {
     private route: ActivatedRoute,
     public ngZone: NgZone,// NgZone service to remove outside scope warning
     private storage: AngularFireStorage,
-    ) { }
+    private storage1: Storage,
+    private platform: Platform,
+    ) { 
+      this.platform.ready().then(() => {
+        this.ifLoggedIn();
+      });
+
+    }
+
+    ifLoggedIn() {
+      this.storage1.get('USER_INFO').then((response) => {
+        if (response) {
+          this.authState.next(true);
+        }
+      });
+    }
     // Sign in with email/password
   SignIn(email, password) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
@@ -37,14 +55,22 @@ export class AuthService {
           localStorage.setItem('user', JSON.stringify(result.user));
           JSON.parse(localStorage.getItem('user'));
           this.router.navigate(['dashboard']);
-          
+          this.authState.next(true);
+          // this.storage1.set('USER_INFO', result.user).then((response) => {
+          //   this.router.navigate(['dashboard']);
+          //   this.authState.next(true);
+          // });
         }
         else if(result.user.emailVerified == true && result1.enable) {
-          
+          // this.storage1.set('USER_INFO', result.user).then((response) => {
+          //   this.router.navigate(['dashboard']);
+          //   this.authState.next(true);
+          // });
           
           localStorage.setItem('user', JSON.stringify(result.user));
           JSON.parse(localStorage.getItem('user'));
           this.router.navigate(['dashboard']);
+          this.authState.next(true);
         }//else closing
         else{
           // this.snackBar.open("user account not enabled", "action", {
@@ -66,5 +92,14 @@ export class AuthService {
     const data = { uid:[uid],pushToken:token}
       this.db.object('fcmTokens/').update(data)
   }
+  logout() {
+    this.storage1.remove('USER_INFO').then(() => {
+      this.router.navigate(['login']);
+      this.authState.next(false);
+    });
+  }
 
+  isAuthenticated() {
+    return this.authState.value;
+  }
 }

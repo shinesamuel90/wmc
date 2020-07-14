@@ -22,8 +22,8 @@
         </ion-col>
         <ion-col size="9">
           <ion-label class="primary-color">{{member.firstName}} {{member.lastName}}</ion-label>
-          <p class="desig secondary-color">{{member.mobile}}</p>
-          <p class="desig2">{{member.designation}}</p>
+          <p class="desig secondary-color">{{member.designation}}</p>
+          <p class="desig2">{{member.mobile}}</p>
         </ion-col>
       </div>
       <div *ngIf='member.designation === "Vice President"'>
@@ -32,8 +32,8 @@
           </ion-col>
           <ion-col size="9">
             <ion-label class="primary-color">{{member.firstName}} {{member.lastName}}</ion-label>
-            <p class="desig secondary-color">{{member.mobile}}</p>
-            <p class="desig2">{{member.designation}}</p>
+            <p class="desig secondary-color">{{member.designation}}</p>
+            <p class="desig2">{{member.mobile}}</p>
           </ion-col>
         </div>
         <div *ngIf='member.designation === "Tresurer"'>
@@ -42,8 +42,8 @@
             </ion-col>
             <ion-col size="9">
               <ion-label class="primary-color">{{member.firstName}} {{member.lastName}}</ion-label>
-              <p class="desig secondary-color">{{member.mobile}}</p>
-              <p class="desig2">{{member.designation}}</p>
+              <p class="desig secondary-color">{{member.designation}}</p>
+              <p class="desig2">{{member.mobile}}</p>
             </ion-col>
           </div>
           <div *ngIf='member.designation === "secretary"'>
@@ -52,8 +52,8 @@
               </ion-col>
               <ion-col size="9">
                 <ion-label class="primary-color">{{member.firstName}} {{member.lastName}}</ion-label>
-                <p class="desig secondary-color">{{member.mobile}}</p>
-                <p class="desig2">{{member.designation}}</p>
+                <p class="desig secondary-color">{{member.designation}}</p>
+                <p class="desig2">{{member.mobile}}</p>
               </ion-col>
             </div>
             <div *ngIf='member.designation === "Committe member"'>
@@ -62,8 +62,8 @@
                 </ion-col>
                 <ion-col size="9">
                   <ion-label class="primary-color">{{member.firstName}} {{member.lastName}}</ion-label>
-                  <p class="desig secondary-color">{{member.mobile}}</p>
-                  <p class="desig2">{{member.designation}}</p>
+                  <p class="desig secondary-color"></p>{{member.designation}}
+                  <p class="desig2">{{member.mobile}}</p>
                 </ion-col>
               </div>
         </ion-row>
