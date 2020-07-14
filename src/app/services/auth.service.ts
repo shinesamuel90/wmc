@@ -12,6 +12,8 @@ import { Storage } from '@ionic/storage';
   providedIn: 'root'
 })
 export class AuthService {
+  
+  
  
   authState = new BehaviorSubject(false);
   private eventAuthError = new BehaviorSubject<string>("");
@@ -24,6 +26,7 @@ export class AuthService {
     private storage: AngularFireStorage,
     private storage1: Storage,
     private platform: Platform,
+   
     ) { 
       this.platform.ready().then(() => {
         this.ifLoggedIn();
@@ -32,7 +35,7 @@ export class AuthService {
     }
 
     ifLoggedIn() {
-      this.storage1.get('USER_INFO').then((response) => {
+      localStorage.get('user').then((response) => {
         if (response) {
           this.authState.next(true);
         }
@@ -101,5 +104,23 @@ export class AuthService {
 
   isAuthenticated() {
     return this.authState.value;
+  }
+
+  register(value: any) {
+    return new Promise<any>((resolve, reject) => {
+
+      this.afAuth.createUserWithEmailAndPassword(value.email, value.password)
+        .then(
+          res => resolve(res),
+          err => reject(err)
+     
+          )
+          this.addUser(value)
+
+    }
+)
+  }
+  addUser(value: any) {
+  
   }
 }
