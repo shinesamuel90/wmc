@@ -22,7 +22,10 @@ import { MembersService } from './services/members.service';
 import { GalleryService } from './services/gallery.service';
 import { AlbumdataService } from './services/albumdata.service';
 import { AlbumDataResolverService } from './resolver/album-data-resolver.service';
+import { AuthGuardService } from './services/auth-guard.service';
+import { IonicStorageModule } from '@ionic/storage';
 
+import { CallNumber } from '@ionic-native/call-number/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -31,6 +34,7 @@ import { AlbumDataResolverService } from './resolver/album-data-resolver.service
     FormsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    IonicStorageModule.forRoot(),
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
@@ -45,6 +49,8 @@ import { AlbumDataResolverService } from './resolver/album-data-resolver.service
     ArticleService,
     MembersService,
     GalleryService,
+    AuthGuardService,
+    CallNumber,
        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

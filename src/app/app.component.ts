@@ -3,6 +3,8 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Platform, MenuController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AuthService } from './services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -46,10 +48,12 @@ export class AppComponent implements OnInit {
   //@ViewChild(Tabs, { read: ElementRef }) tabs: ElementRef;
   tabshow:boolean;
   constructor(
+    private router:Router,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private menuController: MenuController
+    private menuController: MenuController,
+    private authService:AuthService
   ) {
     this.initializeApp();
   }
@@ -58,6 +62,14 @@ export class AppComponent implements OnInit {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.authService.authState.subscribe(state => {
+        if (state) {
+          this.router.navigate(['dashboard']);
+        } else {
+          this.router.navigate(['']);
+        }
+      });
+
     });
   }
 

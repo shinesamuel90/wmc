@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MembersService } from 'src/app/services/members.service';
 import { first } from 'rxjs/operators';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 @Component({
   selector: 'app-members',
   templateUrl: './members.page.html',
@@ -9,7 +10,9 @@ import { first } from 'rxjs/operators';
 export class MembersPage implements OnInit {
   members: any[];
   src="/assets/images/dummy-user.png"
-  constructor(private membersService:MembersService) { }
+  constructor(private membersService:MembersService,
+    private callNumber: CallNumber
+    ) { }
 
   async ngOnInit() {
     this.members=await this.initializeItems();
@@ -31,5 +34,8 @@ export class MembersPage implements OnInit {
       this.members = await this.initializeItems();
     }
     }
-  
+    call(){
+      this.callNumber.callNumber('3525235235235', true).then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
+    }
 }
