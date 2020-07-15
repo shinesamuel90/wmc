@@ -70,5 +70,7 @@ export class SignUpPage implements OnInit {
         this.successMessage = "";
       })
   }
-  goLoginPage(){}
+  goLoginPage(){
+    this.router.navigate(['']);
+  }
 }

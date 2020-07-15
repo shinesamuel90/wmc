@@ -3,11 +3,13 @@ import { AngularFireDatabase } from '@angular/fire/database';
 
 import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Platform } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { User } from './users';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -106,21 +108,69 @@ export class AuthService {
     return this.authState.value;
   }
 
-  register(value: any) {
+  register(user: any) {
     return new Promise<any>((resolve, reject) => {
 
-      this.afAuth.createUserWithEmailAndPassword(value.email, value.password)
-        .then(
-          res => resolve(res),
-          err => reject(err)
+      this.afAuth.createUserWithEmailAndPassword(user.email, user.password)
+        .then(result=>{
+          user.uid = result.user.uid;
+          user.mobile = "";
+          user.sex = "";
+          user.location = "";
+          user.is_committee_member = "No";
+          user.designation = "";
+          user.photoURL=null;
+          user.dobDate=new Date();
+          user.anniversaryDate=new Date();
+          user.relatedUid= "";
+          user.relation="";
+          user.emailVerified=result.user.emailVerified;
+          //save to firestore
+           this.SetUserData(user);
+           //save to real time db
+          //this.createUserRealTime(user);
+          //this.router.navigate(['sign-in']);
+          resolve(result);
+          
+        });
+          // res => resolve(res),
+          // err => reject(err)
      
-          )
-          this.addUser(value)
+          // )
+          
+      
 
     }
 )
   }
-  addUser(value: any) {
+  SetUserData(user: any) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
   
+      const userData: User = {
+        uid: user.uid,
+        email: user.email,
+        displayName: user.firstName+" "+user.lastName,
+        photoURL: user.photoURL,
+        emailVerified: user.emailVerified,
+        lastName: user.lastName,
+        firstName: user.firstName,
+        role: {
+          user: true
+        },
+        mobile: user.mobile,
+        sex: user.sex,
+        is_committee_member:user.is_committee_member,
+        designation: user.designation,
+        location: user.location,
+        dobDate: user.dobDate,
+        anniversaryDate: user.dobDate,
+        relatedUid: user.relatedUid,
+        relation:user.relation,
+        enable:false
+      }
+      return userRef.set(userData, {
+        merge: true
+      })
   }
+ 
 }
