@@ -11,6 +11,7 @@ emailVerified: boolean;
 firstName:string;
 lastName:string;
 role:Roles;
+countryCode:string;
 mobile:string;
 sex:string;
 is_committee_member:string;
@@ -22,5 +23,7 @@ related?:User;
 relatedUid:string;
 relation:string;
 enable:boolean;
-
+region:string;
+country:string;
+province:string;
 }

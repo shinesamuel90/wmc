@@ -3,3 +3,7 @@ npx cap copy
 npx cap sync
 npx cap update
 npx cap open
+selecetable example
+https://stackblitz.com/edit/ionic-selectable-form-control?file=services%2Fport.service.ts
+### get region and contry
+https://restcountries.eu/#api-endpoints-all

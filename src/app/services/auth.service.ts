@@ -109,22 +109,25 @@ export class AuthService {
   }
 
   register(user: any) {
+    console.log("register>>>",user);
+    
     return new Promise<any>((resolve, reject) => {
 
       this.afAuth.createUserWithEmailAndPassword(user.email, user.password)
         .then(result=>{
           user.uid = result.user.uid;
-          user.mobile = "";
+          // user.mobile = "";
           user.sex = "";
-          user.location = "";
+           user.location = "";
           user.is_committee_member = "No";
           user.designation = "";
           user.photoURL=null;
-          user.dobDate=new Date();
-          user.anniversaryDate=new Date();
+           user.dobDate=new Date();
+           user.anniversaryDate=new Date();
           user.relatedUid= "";
           user.relation="";
           user.emailVerified=result.user.emailVerified;
+          
           //save to firestore
            this.SetUserData(user);
            //save to real time db
@@ -157,7 +160,8 @@ export class AuthService {
         role: {
           user: true
         },
-        mobile: user.mobile,
+        countryCode:user.countryCode,
+        mobile: user.mobileNumber,
         sex: user.sex,
         is_committee_member:user.is_committee_member,
         designation: user.designation,
@@ -166,7 +170,10 @@ export class AuthService {
         anniversaryDate: user.dobDate,
         relatedUid: user.relatedUid,
         relation:user.relation,
-        enable:false
+        enable:false,
+        region:user.region.name,
+        country:user.country.name,
+        province:user.province.name
       }
       return userRef.set(userData, {
         merge: true

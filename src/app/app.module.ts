@@ -26,6 +26,10 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { IonicStorageModule } from '@ionic/storage';
 
 import { CallNumber } from '@ionic-native/call-number/ngx';
+import { IonicSelectableModule } from 'ionic-selectable';
+import { CountriesService } from './services/countries.service';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -40,7 +44,9 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFireStorageModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    IonicSelectableModule,
+    HttpClientModule
   ],
   providers: [
     StatusBar,
@@ -50,6 +56,7 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
     MembersService,
     GalleryService,
     AuthGuardService,
+    CountriesService,
     CallNumber,
        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
