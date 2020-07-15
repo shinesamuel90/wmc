@@ -12,73 +12,106 @@
     <ion-searchbar (ionInput)="filterItems($event)"></ion-searchbar>
   </ion-toolbar>
 
-  
-
-
-    <ion-row class="member-list" *ngFor="let member of members ">
-      <div *ngIf='member.designation === "President"'>
-      <ion-col size="3">
-        <img src="{{ member.photoURL!= null ?member.photoURL : src}}" class="pro-image" />
+  <div *ngFor="let member of members ">
+    <div *ngIf='member.designation === "President"'>
+      <ion-row class="member-list">
+        <ion-col size="3">
+          <img
+            src="{{ member.photoURL!= null ?member.photoURL : src}}"
+            class="pro-image"
+          />
         </ion-col>
         <ion-col size="9">
-          <ion-label class="primary-color">{{member.firstName}} {{member.lastName}}</ion-label>
+          <ion-label class="primary-color"
+            >{{member.firstName}} {{member.lastName}}</ion-label
+          >
           <p class="desig secondary-color">{{member.designation}}</p>
           <p class="desig2">{{member.mobile}}</p>
         </ion-col>
-      </div>
-      <div *ngIf='member.designation === "Vice President"'>
+      </ion-row>
+    </div>
+
+    <div *ngIf='member.designation === "Vice President"'>
+      <ion-row class="member-list">
         <ion-col size="3">
-          <img src="{{ member.photoURL!= null ?member.photoURL : src}}" class="pro-image" />
-          </ion-col>
-          <ion-col size="9">
-            <ion-label class="primary-color">{{member.firstName}} {{member.lastName}}</ion-label>
-            <p class="desig secondary-color">{{member.designation}}</p>
-            <p class="desig2">{{member.mobile}}</p>
-          </ion-col>
-        </div>
-        <div *ngIf='member.designation === "Tresurer"'>
-          <ion-col size="3">
-            <img src="{{ member.photoURL!= null ?member.photoURL : src}}" class="pro-image" />
-            </ion-col>
-            <ion-col size="9">
-              <ion-label class="primary-color">{{member.firstName}} {{member.lastName}}</ion-label>
-              <p class="desig secondary-color">{{member.designation}}</p>
-              <p class="desig2">{{member.mobile}}</p>
-            </ion-col>
-          </div>
-          <div *ngIf='member.designation === "secretary"'>
-            <ion-col size="3">
-              <img src="{{ member.photoURL!= null ?member.photoURL : src}}" class="pro-image" />
-              </ion-col>
-              <ion-col size="9">
-                <ion-label class="primary-color">{{member.firstName}} {{member.lastName}}</ion-label>
-                <p class="desig secondary-color">{{member.designation}}</p>
-                <p class="desig2">{{member.mobile}}</p>
-              </ion-col>
-            </div>
-            <div *ngIf='member.designation === "Committe member"'>
-              <ion-col size="3">
-                <img src="{{ member.photoURL!= null ?member.photoURL : src}}" class="pro-image" />
-                </ion-col>
-                <ion-col size="9">
-                  <ion-label class="primary-color">{{member.firstName}} {{member.lastName}}</ion-label>
-                  <p class="desig secondary-color"></p>{{member.designation}}
-                  <p class="desig2">{{member.mobile}}</p>
-                </ion-col>
-              </div>
-        </ion-row>
-       <!--  <ion-row class="member-list">
-          <ion-col size="3">
-            <img src="assets/images/pro-image.jpg" class="pro-image" />
-            </ion-col>
-            <ion-col size="9">
-              <ion-label class="primary-color">Dona Hicks</ion-label>
-              <p class="desig secondary-color">Admin</p>
-              <p class="desig2">Management</p>
-            </ion-col>
-         
-            </ion-row>
-            <ion-row class="member-list">
+          <img
+            src="{{ member.photoURL!= null ?member.photoURL : src}}"
+            class="pro-image"
+          />
+        </ion-col>
+        <ion-col size="9">
+          <ion-label class="primary-color"
+            >{{member.firstName}} {{member.lastName}}</ion-label
+          >
+          <p class="desig secondary-color">{{member.designation}}</p>
+          <p class="desig2">{{member.mobile}}</p>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div *ngIf='member.designation === "Tresurer"'>
+      <ion-row class="member-list">
+        <ion-col size="3">
+          <img
+            src="{{ member.photoURL!= null ?member.photoURL : src}}"
+            class="pro-image"
+          />
+        </ion-col>
+        <ion-col size="9">
+          <ion-label class="primary-color"
+            >{{member.firstName}} {{member.lastName}}</ion-label
+          >
+          <p class="desig secondary-color">{{member.designation}}</p>
+          <p class="desig2">{{member.mobile}}</p>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngIf='member.designation === "secretary"'>
+      <ion-row class="member-list">
+        <ion-col size="3">
+          <img
+            src="{{ member.photoURL!= null ?member.photoURL : src}}"
+            class="pro-image"
+          />
+        </ion-col>
+        <ion-col size="9">
+          <ion-label class="primary-color"
+            >{{member.firstName}} {{member.lastName}}</ion-label
+          >
+          <p class="desig secondary-color">{{member.designation}}</p>
+          <p class="desig2">{{member.mobile}}</p>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngIf='member.designation === "Committe member"'>
+      <ion-row class="member-list">
+        <ion-col size="3">
+          <img
+            src="{{ member.photoURL!= null ?member.photoURL : src}}"
+            class="pro-image"
+          />
+        </ion-col>
+        <ion-col size="9">
+          <ion-label class="primary-color"
+            >{{member.firstName}} {{member.lastName}}</ion-label
+          >
+          <p class="desig secondary-color">{{member.designation}}</p>
+          <p class="desig2">{{member.mobile}}</p>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+  <ion-row class="member-list">
+    <ion-col size="3">
+      <img src="assets/images/pro-image.jpg" class="pro-image" />
+    </ion-col>
+    <ion-col size="9">
+      <ion-label class="primary-color">Dona Hicks</ion-label>
+      <p class="desig secondary-color">Admin</p>
+      <p class="desig2">Management</p>
+    </ion-col>
+  </ion-row>
+  <!--  <ion-row class="member-list">
               <ion-col size="3">
                 <img src="assets/images/pro-image.jpg" class="pro-image" />
                 </ion-col>
@@ -144,9 +177,4 @@
                                     </ion-col>
                                  
                                     </ion-row> -->
-    
-  
-
- 
-
 </ion-content>
