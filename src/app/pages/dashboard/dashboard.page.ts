@@ -21,18 +21,29 @@ export class DashboardPage implements OnInit {
       
     },
     {
+      title: 'Province Committee',
+      url: '/dashboard/tabs/committee-members',
+      icon: 'people'
+      
+    },
+    {
       title: 'Members',
       url: '/dashboard/tabs/members',
       icon: 'people-circle'
      
     },
     {
-      title:'gallery',
+      title:'Gallery',
       url:'/dashboard/tabs/gallery',
       icon:'image'
     },
     {
-      title:'profile',
+      title:'Videos',
+      url:'/dashboard/tabs/videos',
+      icon:'image'
+    },
+    {
+      title:'Profile',
       url:'/dashboard/tabs/profile',
       icon:'person'
     }

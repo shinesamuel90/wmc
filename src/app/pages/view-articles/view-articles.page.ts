@@ -13,6 +13,7 @@ import { AlbumdataService } from 'src/app/services/albumdata.service';
 export class ViewArticlesPage implements OnInit {
   public folder: string;
  public articles;
+ src="assets/images/image1.jpg";
   constructor(private activatedRoute: ActivatedRoute,
     private articleService:ArticleService,
     private dataService:AlbumdataService,

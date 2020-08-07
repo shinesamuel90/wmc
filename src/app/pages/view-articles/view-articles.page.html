@@ -27,7 +27,8 @@
       
     
       <ion-card-content class="content-color">
-        <img src="assets/images/image1.jpg" class="card-image" />
+        <!-- "assets/images/image1.jpg" -->
+        <img src="{{ article.coverImageUrl!= null ?article.coverImageUrl : src}}" class="card-image" />
        {{article.description}}
        <ion-row >
         <ion-col size="12">

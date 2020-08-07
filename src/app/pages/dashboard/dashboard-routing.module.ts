@@ -28,6 +28,10 @@ const routes: Routes = [
         path: 'profile',
         loadChildren: () => import('../profile/profile.module').then( m => m.ProfilePageModule)
       },
+      {
+        path: 'videos',
+        loadChildren: () => import('../videos/videos.module').then( m => m.VideosPageModule)
+      },
       
   {
     path: 'photo-viewer/:id',

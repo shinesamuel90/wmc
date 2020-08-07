@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>sign-up</ion-title>
+    <ion-title>Sign Up <img src="assets/images/World-Malyalee-Council.svg" class="tool-bar-logo" /></ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -10,38 +10,38 @@
       <ion-label position="floating" color="primary">First Name</ion-label>
       <ion-input type="text" formControlName="firstName"></ion-input>
     </ion-item>
-    <div class="validation-errors">
+    <!-- <div class="validation-errors">
       <ng-container *ngFor="let validation of validation_messages.firstName">
         <div class="error-message"
           *ngIf="validations_form.get('firstName').hasError(validation.type) && (validations_form.get('firstName').dirty || validations_form.get('password').touched)">
           {{ validation.message }}
         </div>
       </ng-container>
-    </div>
+    </div> -->
     <ion-item>
       <ion-label position="floating" color="primary">Last Name</ion-label>
       <ion-input type="text" formControlName="lastName"></ion-input>
     </ion-item>
-    <div class="validation-errors">
+    <!-- <div class="validation-errors">
       <ng-container *ngFor="let validation of validation_messages.lastName">
         <div class="error-message"
           *ngIf="validations_form.get('lastName').hasError(validation.type) && (validations_form.get('lastName').dirty || validations_form.get('password').touched)">
           {{ validation.message }}
         </div>
       </ng-container>
-    </div>
+    </div> -->
     <ion-item>
       <ion-label position="floating" color="primary">Email</ion-label>
       <ion-input type="text" formControlName="email"></ion-input>
     </ion-item>
-    <div class="validation-errors">
+    <!-- <div class="validation-errors">
       <ng-container *ngFor="let validation of validation_messages.email">
         <div class="error-message"
           *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('password').touched)">
           {{ validation.message }}
         </div>
       </ng-container>
-    </div>
+    </div> -->
     <ion-item>
       <ion-label position="floating" color="primary">Code</ion-label>
       <ion-select placeholder="+" formControlName="countryCode">
@@ -52,14 +52,14 @@
       <ion-input type="number" formControlName="mobileNumber"></ion-input>
       
     </ion-item>
-    <div class="validation-errors">
+    <!-- <div class="validation-errors">
       <ng-container *ngFor="let validation of validation_messages.mobileNumber">
         <div class="error-message"
           *ngIf="validations_form.get('mobileNumber').hasError(validation.type) && (validations_form.get('mobileNumber').dirty || validations_form.get('password').touched)">
           {{ validation.message }}
         </div>
       </ng-container>
-    </div>
+    </div> -->
     <ion-item>
       <ion-label  position="floating" color="primary">Region</ion-label>
       <ionic-selectable
@@ -73,16 +73,16 @@
        >
       </ionic-selectable>
     </ion-item>
-    <div class="validation-errors">
+    <!-- <div class="validation-errors">
       <ng-container *ngFor="let validation of validation_messages.region">
         <div class="error-message"
           *ngIf="validations_form.get('region').hasError(validation.type) && (validations_form.get('region').dirty || validations_form.get('password').touched)">
           {{ validation.message }}
         </div>
       </ng-container>
-    </div>
+    </div> -->
     <ion-item>
-      <ion-label position="floating" color="primary">Contry</ion-label>
+      <ion-label position="floating" color="primary">Country</ion-label>
       <ionic-selectable
         
       formControlName="country"
@@ -94,14 +94,14 @@
        >
       </ionic-selectable>
     </ion-item>
-    <div class="validation-errors">
+    <!-- <div class="validation-errors">
       <ng-container *ngFor="let validation of validation_messages.country">
         <div class="error-message"
           *ngIf="validations_form.get('country').hasError(validation.type) && (validations_form.get('country').dirty || validations_form.get('password').touched)">
           {{ validation.message }}
         </div>
       </ng-container>
-    </div>
+    </div> -->
     <ion-item>
       <ion-label position="floating" color="primary">Province</ion-label>
       <ionic-selectable
@@ -114,14 +114,14 @@
        >
       </ionic-selectable>
     </ion-item>
-    <div class="validation-errors">
+    <!-- <div class="validation-errors">
       <ng-container *ngFor="let validation of validation_messages.province">
         <div class="error-message"
           *ngIf="validations_form.get('province').hasError(validation.type) && (validations_form.get('province').dirty || validations_form.get('password').touched)">
           {{ validation.message }}
         </div>
       </ng-container>
-    </div>
+    </div> -->
    
 
     <ion-item>
