@@ -13,6 +13,23 @@
   </ion-toolbar>
 
   <div *ngFor="let member of members ">
+    <div *ngIf='member.designation === "Chairman"'>
+      <ion-row class="member-list">
+        <ion-col size="3">
+          <img
+            src="{{ member.photoURL!= null ?member.photoURL : src}}"
+            class="pro-image"
+          />
+        </ion-col>
+        <ion-col size="9">
+          <ion-label class="primary-color"
+            >{{member.firstName}} {{member.lastName}}</ion-label
+          >
+          <p class="desig secondary-color">{{member.designation}}</p>
+          <p class="desig2">{{member.mobile}}</p>
+        </ion-col>
+      </ion-row>
+    </div>
     <div *ngIf='member.designation === "Global Chairman"'>
       <ion-row class="member-list">
         <ion-col size="3">

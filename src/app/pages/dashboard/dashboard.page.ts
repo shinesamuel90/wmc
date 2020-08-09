@@ -40,7 +40,7 @@ export class DashboardPage implements OnInit {
     {
       title:'Videos',
       url:'/dashboard/tabs/videos',
-      icon:'image'
+      icon:'videocam'
     },
     {
       title:'Profile',
