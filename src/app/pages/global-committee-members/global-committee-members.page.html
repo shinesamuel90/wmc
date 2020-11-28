@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Province committee   <img src="assets/images/World-Malyalee-Council.svg" class="tool-bar-logo" /> </ion-title>
+    <ion-title>Global committee   <img src="assets/images/World-Malyalee-Council.svg" class="tool-bar-logo" /> </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,7 +13,7 @@
   </ion-toolbar>
 
   <div *ngFor="let member of members  ">
-    <!-- <div *ngIf='member.designation === "Chairman"'>
+    <!-- <div *ngIf='member.g_designation === "Chairman"'>
       <ion-row class="member-list">
         <ion-col size="3">
           <img
@@ -25,12 +25,29 @@
           <ion-label class="primary-color"
             >{{member.firstName}} {{member.lastName}}</ion-label
           >
-          <p class="desig secondary-color">{{member.designation}}</p>
+          <p class="desig secondary-color">{{member.g_designation}}</p>
+          <p class="desig2">{{member.mobile}}</p>
+        </ion-col>
+      </ion-row>
+    </div> -->
+    <!-- <div *ngIf='member.g_designation === "Global Chairman"'>
+      <ion-row class="member-list">
+        <ion-col size="3">
+          <img
+            src="{{ member.photoURL!= null ?member.photoURL : src}}"
+            class="pro-image"
+          />
+        </ion-col>
+        <ion-col size="9">
+          <ion-label class="primary-color"
+            >{{member.firstName}} {{member.lastName}}</ion-label
+          >
+          <p class="desig secondary-color">{{member.g_designation}}</p>
           <p class="desig2">{{member.mobile}}</p>
         </ion-col>
       </ion-row>
     </div>
-    <div *ngIf='member.designation === "Global Chairman"'>
+    <div *ngIf='member.g_designation === "Global president"'>
       <ion-row class="member-list">
         <ion-col size="3">
           <img
@@ -42,12 +59,12 @@
           <ion-label class="primary-color"
             >{{member.firstName}} {{member.lastName}}</ion-label
           >
-          <p class="desig secondary-color">{{member.designation}}</p>
+          <p class="desig secondary-color">{{member.g_designation}}</p>
           <p class="desig2">{{member.mobile}}</p>
         </ion-col>
       </ion-row>
     </div>
-    <div *ngIf='member.designation === "Global president"'>
+    <div *ngIf='member.g_designation === "Global Secretary General"'>
       <ion-row class="member-list">
         <ion-col size="3">
           <img
@@ -59,12 +76,12 @@
           <ion-label class="primary-color"
             >{{member.firstName}} {{member.lastName}}</ion-label
           >
-          <p class="desig secondary-color">{{member.designation}}</p>
+          <p class="desig secondary-color">{{member.g_designation}}</p>
           <p class="desig2">{{member.mobile}}</p>
         </ion-col>
       </ion-row>
     </div>
-    <div *ngIf='member.designation === "VP (admin)"'>
+    <div *ngIf='member.g_designation === "VP (admin)"'>
       <ion-row class="member-list">
         <ion-col size="3">
           <img
@@ -76,12 +93,12 @@
           <ion-label class="primary-color"
             >{{member.firstName}} {{member.lastName}}</ion-label
           >
-          <p class="desig secondary-color">{{member.designation}}</p>
+          <p class="desig secondary-color">{{member.g_designation}}</p>
           <p class="desig2">{{member.mobile}}</p>
         </ion-col>
       </ion-row>
     </div>
-    <div *ngIf='member.designation === "President"'>
+    <div *ngIf='member.g_designation === "President"'>
       <ion-row class="member-list">
         <ion-col size="3">
           <img
@@ -93,13 +110,13 @@
           <ion-label class="primary-color"
             >{{member.firstName}} {{member.lastName}}</ion-label
           >
-          <p class="desig secondary-color">{{member.designation}}</p>
+          <p class="desig secondary-color">{{member.g_designation}}</p>
           <p class="desig2">{{member.mobile}}</p>
         </ion-col>
       </ion-row>
     </div>
 
-    <div *ngIf='member.designation === "Vice President"'>
+    <div *ngIf='member.g_designation === "Vice President"'>
       <ion-row class="member-list">
         <ion-col size="3">
           <img
@@ -111,13 +128,13 @@
           <ion-label class="primary-color"
             >{{member.firstName}} {{member.lastName}}</ion-label
           >
-          <p class="desig secondary-color">{{member.designation}}</p>
+          <p class="desig secondary-color">{{member.g_designation}}</p>
           <p class="desig2">{{member.mobile}}</p>
         </ion-col>
       </ion-row>
     </div>
 
-    <div *ngIf='member.designation === "Tresurer"'>
+    <div *ngIf='member.g_designation === "Tresurer"'>
       <ion-row class="member-list">
         <ion-col size="3">
           <img
@@ -129,12 +146,12 @@
           <ion-label class="primary-color"
             >{{member.firstName}} {{member.lastName}}</ion-label
           >
-          <p class="desig secondary-color">{{member.designation}}</p>
+          <p class="desig secondary-color">{{member.g_designation}}</p>
           <p class="desig2">{{member.mobile}}</p>
         </ion-col>
       </ion-row>
     </div>
-    <div *ngIf='member.designation === "Secretary"'>
+    <div *ngIf='member.g_designation === "secretary"'>
       <ion-row class="member-list">
         <ion-col size="3">
           <img
@@ -146,12 +163,12 @@
           <ion-label class="primary-color"
             >{{member.firstName}} {{member.lastName}}</ion-label
           >
-          <p class="desig secondary-color">{{member.designation}}</p>
+          <p class="desig secondary-color">{{member.g_designation}}</p>
           <p class="desig2">{{member.mobile}}</p>
         </ion-col>
       </ion-row>
     </div>
-    <div *ngIf='member.designation === "Committe member"'>
+    <div *ngIf='member.g_designation === "Committe member"'>
       <ion-row class="member-list">
         <ion-col size="3">
           <img
@@ -163,7 +180,7 @@
           <ion-label class="primary-color"
             >{{member.firstName}} {{member.lastName}}</ion-label
           >
-          <p class="desig secondary-color">{{member.designation}}</p>
+          <p class="desig secondary-color">{{member.g_designation}}</p>
           <p class="desig2">{{member.mobile}}</p>
         </ion-col>
       </ion-row>
@@ -179,11 +196,12 @@
         <ion-label class="primary-color"
           >{{member.firstName}} {{member.lastName}}</ion-label
         >
-        <p class="desig secondary-color">{{member.designation}}</p>
-        <p class="desig2">{{member.mobile}}</p>
+        <p class="desig secondary-color">{{member.g_designation.designation}}</p>
+        <p class="desig2">{{member.mobile.internationalNumber}}</p>
       </ion-col>
     </ion-row>
   </div>
+  
   <!-- <ion-row class="member-list">
     <ion-col size="3">
       <img src="assets/images/pro-image.jpg" class="pro-image" />

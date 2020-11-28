@@ -7,6 +7,7 @@ import { User } from './users';
   providedIn: 'root'
 })
 export class MembersService {
+ 
 
   constructor(public db: AngularFireDatabase,
     public firestore: AngularFirestore) { }
@@ -23,4 +24,8 @@ export class MembersService {
 // Create a query against the collection
 
  }
+ getGlobalCommitteeMembers() {
+  return this.firestore.collection('users',ref=>ref.where('is_global_committee_member', '==', 'Yes'));
+
+}
 }

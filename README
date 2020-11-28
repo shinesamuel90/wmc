@@ -10,3 +10,11 @@ https://restcountries.eu/#api-endpoints-all
 ### firestore sample
 https://javebratt.com/crud-ionic-firestore/
 ### ionic back button login
+
+## ionic firebase deployment
+	
+ionic build --prod --release
+firebase login
+firebase init
+	
+firebase deploy

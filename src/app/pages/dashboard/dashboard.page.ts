@@ -16,7 +16,7 @@ export class DashboardPage implements OnInit {
     },
     {
       title: 'Global Committee',
-      url: '/dashboard/tabs/committee-members',
+      url: '/dashboard/tabs/global-committee-members',
       icon: 'people'
       
     },

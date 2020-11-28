@@ -30,6 +30,7 @@ import { IonicSelectableModule } from 'ionic-selectable';
 import { CountriesService } from './services/countries.service';
 import { HttpClientModule } from '@angular/common/http';
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],

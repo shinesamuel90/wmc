@@ -21,6 +21,10 @@ const routes: Routes = [
         loadChildren: () => import('../committee-members/committee-members.module').then( m => m.CommitteeMembersPageModule)
       },
       {
+        path: 'global-committee-members',
+        loadChildren: () => import('../global-committee-members/global-committee-members.module').then( m => m.GlobalCommitteeMembersPageModule)
+      },
+      {
         path: 'members',
         loadChildren: () => import('../members/members.module').then( m => m.MembersPageModule)
       },

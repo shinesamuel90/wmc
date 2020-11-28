@@ -1,28 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { MembersService } from 'src/app/services/members.service';
 import { first } from 'rxjs/operators';
+import { User } from 'src/app/services/users';
 
 @Component({
-  selector: 'app-committee-members',
-  templateUrl: './committee-members.page.html',
-  styleUrls: ['./committee-members.page.scss'],
+  selector: 'app-global-committee-members',
+  templateUrl: './global-committee-members.page.html',
+  styleUrls: ['./global-committee-members.page.scss'],
 })
-export class CommitteeMembersPage implements OnInit {
+export class GlobalCommitteeMembersPage implements OnInit {
   members: any[];
   src="/assets/images/dummy-user.png"
   constructor(private membersService:MembersService) { }
 
- 
   async ngOnInit() {
     this.members=await this.initializeItems();
+    console.log("members>>>",this.members);
     
   }
-  async initializeItems(): Promise<any> {
-    let foodList:any[]=[];
-     foodList = await this.membersService.getCommitteeMembers().valueChanges().pipe(first()).toPromise();
-    let newarr = foodList.sort((a, b) => a.order - b.order);
+  async initializeItems():  Promise<any>  {
+    let globalCommitteeMembers:any[]=[];
+    globalCommitteeMembers = await this.membersService.getGlobalCommitteeMembers().valueChanges().pipe(first()).toPromise();
+    let newarr = globalCommitteeMembers.sort((a, b) => a.g_designation.order - b.g_designation.order);
     return newarr;
-    //return foodList;
   }
   async filterItems(ev: any) {
     // debugger;
