@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Add Relation      <img src="assets/images/World-Malyalee-Council.svg" class="tool-bar-logo" />  </ion-title>
+ 
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <form class="form" [formGroup]="dependentform" (ngSubmit)="addDependents()">
+    <ion-item>
+      <ion-label position="floating" color="primary">Name</ion-label>
+      <ion-input type="text" formControlName="name"></ion-input>
+       <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.name">
+        <div class="error-message"
+          *ngIf="dependentform.get('name').hasError(validation.type) && (dependentform.get('name').dirty || dependentform.get('name').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div> 
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" color="primary">Relation</ion-label>
+      <ion-select class="ion-text-end" multiple="true" name="idLine" formControlName="relation">
+        <ion-select-option *ngFor="let item of RelationType" value="{{item}}">
+          {{ item }}
+        </ion-select-option>
+      </ion-select>
+       <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.relation">
+        <div class="error-message"
+          *ngIf="dependentform.get('relation').hasError(validation.type) && (dependentform.get('relation').dirty || dependentform.get('relation').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div> 
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" color="primary">Mobile</ion-label>
+      <ion-input type="text" formControlName="mobile"></ion-input>
+       <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.mobile">
+        <div class="error-message"
+          *ngIf="dependentform.get('mobile').hasError(validation.type) && (dependentform.get('mobile').dirty || dependentform.get('mobile').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div> 
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" color="primary">Email</ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
+       <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.email">
+        <div class="error-message"
+          *ngIf="dependentform.get('email').hasError(validation.type) && (dependentform.get('email').dirty || dependentform.get('email').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div> 
+    </ion-item>
+        <ion-item lines="none" class="ion-item-right-margin">
+      <ion-button size="default" slot="end" type="submit" [disabled]="!dependentform.valid">Submit</ion-button>
+    </ion-item>
+  </form>
+</ion-content>

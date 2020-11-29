@@ -9,18 +9,29 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" size="small" data-desc="Add Relations" (click)="addRelations()">
+    <ion-icon name="add"></ion-icon>
+    </ion-fab-button> 
+    </ion-fab>
   <ion-card class="parent-card">
     <ion-card-header>
       <ion-row class="profile-head">
         <ion-col size="4">
-          <img src="assets/images/shabu_1.jpeg" class="pro-image" />
+          <img [src]="currentUser.photoURL" class="pro-image" />
+          <!-- <img src="assets/images/shabu_1.jpeg" class="pro-image" /> -->
           </ion-col>
           <ion-col size="8">
-            <h3 class="primary-color"> Shabu G</h3>
-            <p> <ion-icon name="mail-outline" class="secondary-color"></ion-icon> shabu_shalom@yahoo.co.in</p>
-            <p> <ion-icon name="call-outline" class="secondary-color"></ion-icon> +968 99420885</p>
-            <ion-badge color="secondary-color" class="secondary-color">Member</ion-badge>
+            <h3 class="primary-color">{{currentUser.displayName}}</h3>
+            <p> <ion-icon name="mail-outline" class="secondary-color"></ion-icon> {{currentUser.email}}</p>
+            <p> <ion-icon name="call-outline" class="secondary-color"></ion-icon> {{currentUser.mobile.internationalNumber}}</p>
+         <!-- <div *ngIf="currentUser.is_committee_member=='Yes'">
+          <ion-badge color="secondary-color" class="secondary-color">{{currentUser.designation}}</ion-badge>
+         </div>
+         <div *ngIf="currentUser.is_global_committee_member=='Yes'">
+          <ion-badge color="secondary-color" class="secondary-color">{{currentUser.g_designation}}</ion-badge>
+         </div> -->
+           
           </ion-col>
           </ion-row>
 
@@ -33,28 +44,34 @@
       <ion-row>
         <ion-col size="6" class="col-no-padding-tb">
           <ion-label> Sex</ion-label>
-          <p> Male</p>
+          <p> {{currentUser.sex}}</p>
 
           </ion-col>
+      </ion-row>
+<ion-row>
+      <ion-col size="6" class="col-no-padding-tb">
+            <ion-label> Date Of Birth</ion-label>
+            <p> {{currentUser.dobDate.seconds * 1000|date: 'dd-MM-yyyy'}}</p>
+          </ion-col>
           <ion-col size="6" class="col-no-padding-tb">
-            <ion-label> DOB</ion-label>
-            <p> 12/10/1995</p>
+            <ion-label> Anniversary</ion-label>
+            <p> {{currentUser.anniversaryDate.seconds * 1000|date: 'dd-MM-yyyy'}}</p>
           </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col size="6" class="col-no-padding-tb">
-              <ion-label> Designation</ion-label>
-              <p> Managing Director</p>
+              <ion-label> Country</ion-label>
+              <p>{{currentUser.country}}</p>
               </ion-col>
               <ion-col size="6" class="col-no-padding-tb">
-                <ion-label> Location</ion-label>
-                <p> Oman</p>
+                <ion-label> Province</ion-label>
+                <p> {{currentUser.province}}</p>
               </ion-col>
               </ion-row>
     
 
-              <ion-row>
+              <!-- <ion-row>
                 <ion-col size="6" class="col-no-padding-tb">
                   <ion-label> Related to</ion-label>
                   <p>Smitha</p>
@@ -63,7 +80,7 @@
                     <ion-label> Relation</ion-label>
                     <p>Husband</p>
                   </ion-col>
-                  </ion-row>
+                  </ion-row> -->
 
      
     </ion-card-content>
@@ -73,6 +90,11 @@
     <h3 class="family-member-head">Family Members</h3>
 
     </ion-col>
+    <!-- <ion-col>
+      <ion-fab-button size="small" color="primary">
+        <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-col> -->
     </ion-row>
     <ion-card-content class="relation">
 

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/services/users';
 
 @Component({
   selector: 'app-profile',
@@ -6,14 +9,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-currentUser:any;
-  constructor() { }
+  uid: any;
+  currentUser: User;
+  constructor(private authService: AuthService,
+    private activeRoute: ActivatedRoute,
+    private router:Router
+  ) { }
 
   ngOnInit() {
- if(JSON.parse(localStorage.getItem('user'))){
-console.log(JSON.parse(localStorage.getItem('user')));
+    this.activeRoute.data.subscribe(routeData => {
+      console.log(routeData);
+      
+      let data = routeData['special'];
+      if (data) {
+        console.log("member", data.payload.data());
+        this.currentUser = data.payload.data();
+        
+        console.log(this.currentUser);
+
+      }
+    });
+
   }
-    }
-  
+  addRelations(){
+    this.router.navigate(["/dashboard/tabs/add-relations", { 'id': this.currentUser.uid }]);
+  }
 
 }

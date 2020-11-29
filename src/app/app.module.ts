@@ -29,6 +29,7 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
 import { IonicSelectableModule } from 'ionic-selectable';
 import { CountriesService } from './services/countries.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ProfileDataService } from './resolver/profile-data.service';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { HttpClientModule } from '@angular/common/http';
     AuthGuardService,
     CountriesService,
     CallNumber,
+    ProfileDataService,
        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

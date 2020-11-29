@@ -9,11 +9,13 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Platform } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { User } from './users';
+import { Relation } from '../models/Relations';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  
   
   
  
@@ -121,6 +123,8 @@ export class AuthService {
            user.location = "";
           user.is_committee_member = "No";
           user.designation = "";
+          user.is_global_committee_member="No";
+          user.g_designation="";
           user.photoURL=null;
            user.dobDate=new Date();
            user.anniversaryDate=new Date();
@@ -160,12 +164,14 @@ export class AuthService {
         role: {
           user: true
         },
-        countryCode:user.countryCode,
+        //country:user.countryCode,
         mobile: user.mobileNumber,
         sex: user.sex,
         is_committee_member:user.is_committee_member,
         designation: user.designation,
-        location: user.location,
+        is_global_committee_member:user.is_committee_member,
+        g_designation: user.designation,
+       // location: user.location,
         dobDate: user.dobDate,
         anniversaryDate: user.dobDate,
         relatedUid: user.relatedUid,
@@ -179,5 +185,16 @@ export class AuthService {
         merge: true
       })
   }
- 
+  getUser(userId: string)  {
+
+    return this.afs.collection('users').doc(userId).snapshotChanges();
+
+  }
+  addRelations(uid: any, relation: Relation) {
+
+    this.afs.collection('users').ref.doc(uid).collection('relations').add(relation).then(res=>{
+      console.log(res.id);
+      this.router.navigateByUrl('/dashboard/tabs/profile')
+    });
+  }
 }

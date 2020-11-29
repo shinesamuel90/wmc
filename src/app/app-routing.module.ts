@@ -36,6 +36,11 @@ const routes: Routes = [
   }
   // ,
   // {
+  //   path: 'add-relations',
+  //   loadChildren: () => import('./pages/add-relations/add-relations.module').then( m => m.AddRelationsPageModule)
+  // }
+  // ,
+  // {
   //   path: 'pdf-viewer',
   //   loadChildren: () => import('./pages/pdf-viewer/pdf-viewer.module').then( m => m.PdfViewerPageModule)
   // }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardPage } from './dashboard.page';
 import { AlbumDataResolverService } from 'src/app/resolver/album-data-resolver.service';
+import { ProfileDataService } from 'src/app/resolver/profile-data.service';
 
 const routes: Routes = [
   {
@@ -30,6 +31,9 @@ const routes: Routes = [
       },
       {
         path: 'profile',
+        resolve:{
+          special:ProfileDataService
+        },
         loadChildren: () => import('../profile/profile.module').then( m => m.ProfilePageModule)
       },
       {
@@ -50,6 +54,10 @@ const routes: Routes = [
       special: AlbumDataResolverService
     },
     loadChildren: () => import('../pdf-viewer/pdf-viewer.module').then( m => m.PdfViewerPageModule)
+  },
+  {
+    path: 'add-relations',
+    loadChildren: () => import('../add-relations/add-relations.module').then( m => m.AddRelationsPageModule)
   },
       
   // {
