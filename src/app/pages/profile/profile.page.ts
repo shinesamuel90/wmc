@@ -26,6 +26,7 @@ export class ProfilePage implements OnInit {
       if (data) {
         console.log("member", data.payload.data());
         this.currentUser = data.payload.data();
+        this.relations=[];
         this.getRelations(this.currentUser.uid);
         console.log(this.currentUser);
 

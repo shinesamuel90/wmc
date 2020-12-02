@@ -197,9 +197,10 @@ export class AuthService {
   addRelations(uid: any, relation: Relation) {
 console.log("addrelations",relation);
 
-    this.afs.collection('users').ref.doc(uid).collection('relations').add(relation).then(res=>{
-      console.log(res.id);
-      this.router.navigateByUrl('/dashboard/tabs/profile')
-    });
+   return this.afs.collection('users').ref.doc(uid).collection('relations').add(relation);
+  //  .then(res=>{
+  //     console.log(res.id);
+  //     this.router.navigateByUrl('/dashboard/tabs/profile')
+  //   });
   }
 }

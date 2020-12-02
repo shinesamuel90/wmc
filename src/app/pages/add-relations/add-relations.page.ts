@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Relation } from 'src/app/models/Relations';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -34,6 +34,7 @@ export class AddRelationsPage implements OnInit {
     
   RelationType: any = ['Father', 'Mother', 'Son', 'Daughter', 'Brother', 'Sister', 'Wife', 'Husband']
   constructor(private activatedRoute:ActivatedRoute ,
+    private router:Router,
     private formBuilder:FormBuilder,
     private authService:AuthService
     ) { }
@@ -50,8 +51,8 @@ this.initForm();
     this.dependentform=this.formBuilder.group({
       name:new FormControl('',Validators.compose([Validators.required])),
       relation:new FormControl('',Validators.compose([Validators.required])),
-      mobile:new FormControl('',Validators.compose([Validators.required])),
-      email:new FormControl('',Validators.compose([Validators.required,Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]))
+      mobile:new FormControl(''),
+      email:new FormControl('',Validators.compose([Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]))
     });
   }
   addDependents(){
@@ -63,7 +64,13 @@ relation:this.dependentform.value.relation[0],
 mobile:this.dependentform.value.mobile,
 email:this.dependentform.value.email
 }
-this.authService.addRelations(this.uid,this.relation);
+this.authService.addRelations(this.uid,this.relation)
+.then(res=>{
+      console.log(res.id);
+      this.dependentform.reset();
+      this.router.navigateByUrl('/dashboard/tabs/profile')
+    });
+  
 
     }
   }
