@@ -1,8 +1,6 @@
-export class Relation{
-    uid:string;
-    name:string;
-    relation:string;
-    mobile:string;
-    email:string;
-    
-    }
+export interface Relation {
+    name: string;
+    relation: string;
+    mobile: string;
+    email: string;
+}

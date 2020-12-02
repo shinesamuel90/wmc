@@ -57,10 +57,12 @@ this.initForm();
   addDependents(){
     if(this.dependentform.valid){
 console.log(this.dependentform.value);
-this.relation.email=this.dependentform.value.email;
-this.relation.relation=this.dependentform.value.relation[0];
-this.relation.mobile=this.dependentform.value.mobile;
-this.relation.name=this.dependentform.value.name;
+this.relation={
+name:this.dependentform.value.name,
+relation:this.dependentform.value.relation[0],
+mobile:this.dependentform.value.mobile,
+email:this.dependentform.value.email
+}
 this.authService.addRelations(this.uid,this.relation);
 
     }

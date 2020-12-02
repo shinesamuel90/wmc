@@ -19,6 +19,8 @@ export class ProfileDataService implements Resolve<any> {
       this.authService.getUser(uid)
       .subscribe(
         data => {
+          console.log("profile data resolver",data.payload.data());
+          
           resolve(data);
         }
       );

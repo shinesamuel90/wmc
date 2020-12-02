@@ -18,6 +18,7 @@ export class AuthService {
   
   
   
+  
  
   authState = new BehaviorSubject(false);
   private eventAuthError = new BehaviorSubject<string>("");
@@ -190,7 +191,11 @@ export class AuthService {
     return this.afs.collection('users').doc(userId).snapshotChanges();
 
   }
+  getRelations(uid: string) {
+    return this.afs.collection('users').doc(uid).collection('relations').get();
+  }
   addRelations(uid: any, relation: Relation) {
+console.log("addrelations",relation);
 
     this.afs.collection('users').ref.doc(uid).collection('relations').add(relation).then(res=>{
       console.log(res.id);
