@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
+import { FCM } from '@ionic-native/fcm/ngx';
 
 @Component({
   selector: 'app-root',
@@ -53,7 +54,8 @@ export class AppComponent implements OnInit {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private menuController: MenuController,
-    private authService:AuthService
+    private authService:AuthService,
+    private fcm: FCM
   ) {
     this.initializeApp();
   }
@@ -62,6 +64,7 @@ export class AppComponent implements OnInit {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.fcmSetup();
       this.authService.authState.subscribe(state => {
         if (state) {
           this.router.navigate(['dashboard']);
@@ -71,8 +74,9 @@ export class AppComponent implements OnInit {
       });
 
     });
-  }
 
+  }
+  
   ngOnInit() {
     const path = window.location.pathname.split('folder/')[1];
     if (path !== undefined) {
@@ -85,5 +89,37 @@ export class AppComponent implements OnInit {
      // do stuff
      this.tabshow=true;
   
+}
+fcmSetup() {
+ // get FCM token
+ this.fcm.getToken().then(token => {
+  console.log(token);
+});
+
+  this.fcm.onNotification().subscribe(data => {
+    if (data.wasTapped) {
+      console.log("Received in background");
+    } else {
+      console.log("Received in foreground");
+    };
+  });
+
+  this.fcm.onTokenRefresh().subscribe(token => {
+    // Register your new token in your back-end if you want
+    // backend.registerToken(token);
+  });
+
+}
+subscribeToTopic() {
+  this.fcm.subscribeToTopic('enappd');
+}
+getToken() {
+  this.fcm.getToken().then(token => {
+    // Register your new token in your back-end if you want
+    // backend.registerToken(token);
+  });
+}
+unsubscribeFromTopic() {
+  this.fcm.unsubscribeFromTopic('enappd');
 }
 }

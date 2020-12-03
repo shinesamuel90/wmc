@@ -23,8 +23,8 @@
         </ion-col>
         <ion-col size="9">
           <ion-label class="primary-color"> {{member.firstName}} {{member.lastName}}</ion-label>
-          <p class="desig secondary-color" (click)="call()"><ion-icon name="call-outline" class="secondary-color"></ion-icon>{{member.mobile}}</p>
-          <p class="desig2">{{member.location}}</p>
+          <p class="desig secondary-color" (click)="call()"><ion-icon name="call-outline" class="secondary-color"></ion-icon>{{member.mobile.internationalNumber}}</p>
+          <p class="desig2">{{member.province}}</p>
         </ion-col>
      
         </ion-row>

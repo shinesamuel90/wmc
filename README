@@ -18,3 +18,6 @@ firebase login
 firebase init
 	
 firebase deploy
+
+## ionic 5 notification
+https://medium.com/enappd/firebase-push-notifications-in-ionic-apps-d90c6550fdb7

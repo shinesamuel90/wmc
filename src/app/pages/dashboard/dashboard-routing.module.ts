@@ -27,6 +27,9 @@ const routes: Routes = [
       },
       {
         path: 'members',
+        resolve:{
+          special:ProfileDataService
+        },
         loadChildren: () => import('../members/members.module').then( m => m.MembersPageModule)
       },
       {
