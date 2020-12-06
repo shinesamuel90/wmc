@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package com.insysme.wmc;
 
 import android.os.Bundle;
 
