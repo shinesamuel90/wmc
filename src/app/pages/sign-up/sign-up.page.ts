@@ -16,19 +16,19 @@ export class SignUpPage implements OnInit {
   successMessage: string = '';
   paiseCode = [{
     pais: "Honduras",
-    code: +504
+    code: "+504"
   },
   {
     pais: "USA",
-    code: +1
+    code: "+1"
   },
   {
     pais: "India",
-    code: +91
+    code: "+91"
   },
   {
     pais: "Oman",
-    code: +968
+    code: "+968"
   }
 
   ];
