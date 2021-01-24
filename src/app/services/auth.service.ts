@@ -166,7 +166,13 @@ export class AuthService {
           user: true
         },
         //country:user.countryCode,
-        mobile: user.mobileNumber,
+        mobile: {
+          countryCode:user.countryCode.pais,
+          dialCode:user.countryCode.code,
+          internationalNumber:user.countryCode.code+''+user.mobileNumber,
+          nationalNumber:user.mobileNumber,
+          number:user.mobileNumber
+        },
         sex: user.sex,
         is_committee_member:user.is_committee_member,
         designation: user.designation,
