@@ -21,6 +21,8 @@ export class CommitteeMembersPage implements OnInit {
     let foodList:any[]=[];
      foodList = await this.membersService.getCommitteeMembers().valueChanges().pipe(first()).toPromise();
     let newarr = foodList.sort((a, b) => a.order - b.order);
+    console.log(newarr);
+    
     return newarr;
     //return foodList;
   }

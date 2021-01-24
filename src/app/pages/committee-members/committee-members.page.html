@@ -180,7 +180,7 @@
           >{{member.firstName}} {{member.lastName}}</ion-label
         >
         <p class="desig secondary-color">{{member.designation}}</p>
-        <p class="desig2">{{member.mobile}}</p>
+        <p class="desig2">{{member.mobile.internationalNumber?member.mobile.internationalNumber:member.mobile}}</p>
       </ion-col>
     </ion-row>
   </div>

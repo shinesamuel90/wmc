@@ -33,9 +33,9 @@ export class AuthService {
     private platform: Platform,
    
     ) { 
-      this.platform.ready().then(() => {
-        this.ifLoggedIn();
-      });
+      // this.platform.ready().then(() => {
+      //   this.ifLoggedIn();
+      // });
 
     }
 
@@ -52,7 +52,7 @@ export class AuthService {
       .then((result) => {
         
        
-       this.updateToken(result.user.uid,localStorage.getItem('token'));
+     //  this.updateToken(result.user.uid,localStorage.getItem('token'));
       
       const userDocument = this.afs.collection('users').doc(result.user.uid).ref;
        userDocument.get().then((doc) => {

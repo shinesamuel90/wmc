@@ -32,6 +32,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProfileDataService } from './resolver/profile-data.service';
 
 
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -61,6 +63,11 @@ import { ProfileDataService } from './resolver/profile-data.service';
     CountriesService,
     CallNumber,
     ProfileDataService,
+    AlbumdataService,
+    CountriesService,
+    GalleryService,
+    AuthGuardService,
+    
        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

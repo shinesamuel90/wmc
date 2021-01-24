@@ -35,8 +35,10 @@ export class MembersPage implements OnInit {
   // initializeMembers(province: any): any[] | PromiseLike<any[]> {
   //   throw new Error('Method not implemented.');
   // }
-  async initializeMembers(province: any): Promise<any> {
+  async initializeMembers(province: string): Promise<any> {
     const memberList = await this.membersService.getUsersByProvince(province).valueChanges().pipe(first()).toPromise();
+    console.log(memberList);
+    
     return memberList;
   }
   async filterItems(ev: any) {

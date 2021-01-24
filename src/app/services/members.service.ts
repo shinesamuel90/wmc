@@ -18,8 +18,12 @@ export class MembersService {
     return this.firestore.collection('users');
     
  }
- getUsersByProvince(province: any) {
-  return this.firestore.collection('users',ref=>ref.where('province','==',province));
+ getUsersByProvince(province: string) {
+   console.log(province);
+   const users=this.firestore.collection('users',ref=>ref.where('province','==','Masqat'));
+   console.log(users);
+   
+  return users
 }
  getCommitteeMembers(){
 
