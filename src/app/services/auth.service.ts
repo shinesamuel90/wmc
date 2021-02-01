@@ -33,18 +33,24 @@ export class AuthService {
     private platform: Platform,
    
     ) { 
-      this.platform.ready().then(() => {
-        this.ifLoggedIn();
-      });
-
+      // this.platform.ready().then(() => {
+      //   this.ifLoggedIn();
+      // });
+this.storage1.get('user').then((user)=>{
+  this.authState.next(true)
+  console.log(user);
+  
+})
     }
 
     ifLoggedIn() {
+      if( JSON.parse(localStorage.get('user'))){
       localStorage.get('user').then((response) => {
         if (response) {
           this.authState.next(true);
         }
       });
+    }
     }
     // Sign in with email/password
   SignIn(email, password) {
@@ -61,22 +67,17 @@ export class AuthService {
         
         if (result.user.emailVerified !== true&&result1.enable) {
           localStorage.setItem('user', JSON.stringify(result.user));
-          JSON.parse(localStorage.getItem('user'));
+          this.storage1.set('user',JSON.stringify(result.user))
+         JSON.parse(localStorage.getItem('user'));
           this.router.navigate(['dashboard']);
           this.authState.next(true);
-          // this.storage1.set('USER_INFO', result.user).then((response) => {
-          //   this.router.navigate(['dashboard']);
-          //   this.authState.next(true);
-          // });
+          
         }
         else if(result.user.emailVerified == true && result1.enable) {
-          // this.storage1.set('USER_INFO', result.user).then((response) => {
-          //   this.router.navigate(['dashboard']);
-          //   this.authState.next(true);
-          // });
           
-          localStorage.setItem('user', JSON.stringify(result.user));
-          JSON.parse(localStorage.getItem('user'));
+          this.storage1.set('user',JSON.stringify(result.user))
+         localStorage.setItem('user', JSON.stringify(result.user));
+         JSON.parse(localStorage.getItem('user'));
           this.router.navigate(['dashboard']);
           this.authState.next(true);
         }//else closing
@@ -84,6 +85,10 @@ export class AuthService {
           // this.snackBar.open("user account not enabled", "action", {
           //   duration: 2000,
           // });
+          this.storage1.remove('user').then(()=>{
+            this.authState.next(false);  
+          })
+          
           localStorage.removeItem('user');
 
           this.router.navigate(['sign-in']);
@@ -101,7 +106,7 @@ export class AuthService {
       this.db.object('fcmTokens/').update(data)
   }
   logout() {
-    this.storage1.remove('USER_INFO').then(() => {
+    this.storage1.remove('user').then(() => {
       this.router.navigate(['login']);
       this.authState.next(false);
     });

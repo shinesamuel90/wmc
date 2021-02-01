@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -57,7 +58,7 @@ export class DashboardPage implements OnInit {
     
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor(  ) { }
+  constructor( private authService:AuthService ) { }
 
   ngOnInit() {
     const path = window.location.pathname.split('folder/')[1];
@@ -66,4 +67,7 @@ export class DashboardPage implements OnInit {
     }
   }
   doClick(){}
+  logout(){
+    this.authService.logout()
+  }
 }

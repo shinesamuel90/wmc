@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 //import { FCM } from '@ionic-native/fcm/ngx';
 
 @Component({
@@ -55,6 +56,7 @@ export class AppComponent implements OnInit {
     private statusBar: StatusBar,
     private menuController: MenuController,
     private authService:AuthService,
+    private storage:Storage
    // private fcm: FCM
   ) {
     this.initializeApp();
@@ -65,17 +67,18 @@ export class AppComponent implements OnInit {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       
-      this.authService.authState.subscribe(state => {
-        if (state) {
-          console.log("state",state);
+      // this.authService.authState.subscribe(state => {
+      //   if (state) {
+      //     console.log("state",state);
           
-          this.router.navigate(['dashboard']);
-        } else {
-          this.router.navigate(['']);
-        }
-      });
+      //     this.router.navigate(['dashboard']);
+      //   } else {
+      //     this.router.navigate(['']);
+      //   }
+      // });
 
     });
+   
 
   }
   
@@ -84,7 +87,16 @@ export class AppComponent implements OnInit {
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
-   
+    this.authService.authState.subscribe(state => {
+      if (state) {
+        console.log("state",state);
+        
+        this.router.navigate(['dashboard']);
+      } else {
+        console.log("state",state);
+        this.router.navigate(['']);
+      }
+    });
   }
   ngAfterViewInit() {
   

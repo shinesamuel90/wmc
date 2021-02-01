@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-
+import { Storage } from '@ionic/storage';
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileDataService implements Resolve<any> {
 
-  constructor(private authService:AuthService) { }
+  constructor(private authService:AuthService,private storage:Storage) { }
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     
     if(JSON.parse(localStorage.getItem('user'))){
