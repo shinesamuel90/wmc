@@ -26,6 +26,14 @@ const routes: Routes = [
         loadChildren: () => import('../global-committee-members/global-committee-members.module').then( m => m.GlobalCommitteeMembersPageModule)
       },
       {
+        path:'regional-committee-members',
+        loadChildren:()=>import('../regional-committee/regional-committee.module').then(m=>m.RegionalCommitteePageModule)
+      },
+      {
+        path:'comments/:id',
+        loadChildren:()=>import('../comments/comments.module').then(m=>m.CommentsPageModule)
+      },
+      {
         path: 'members',
         resolve:{
           special:ProfileDataService

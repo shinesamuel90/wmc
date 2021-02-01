@@ -33,7 +33,15 @@ const routes: Routes = [
   {
     path: 'videos',
     loadChildren: () => import('./pages/videos/videos.module').then( m => m.VideosPageModule)
+  },  {
+    path: 'regional-committee',
+    loadChildren: () => import('./pages/regional-committee/regional-committee.module').then( m => m.RegionalCommitteePageModule)
+  },
+  {
+    path: 'comments',
+    loadChildren: () => import('./pages/comments/comments.module').then( m => m.CommentsPageModule)
   }
+
   // ,
   // {
   //   path: 'add-relations',

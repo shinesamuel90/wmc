@@ -3,7 +3,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 
 import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Platform } from '@ionic/angular';
@@ -15,7 +15,7 @@ import { Relation } from '../models/Relations';
   providedIn: 'root'
 })
 export class AuthService {
-  
+ 
   
   
   
@@ -33,9 +33,9 @@ export class AuthService {
     private platform: Platform,
    
     ) { 
-      // this.platform.ready().then(() => {
-      //   this.ifLoggedIn();
-      // });
+      this.platform.ready().then(() => {
+        this.ifLoggedIn();
+      });
 
     }
 
@@ -197,6 +197,11 @@ export class AuthService {
     return this.afs.collection('users').doc(userId).snapshotChanges();
 
   }
+  getUser1(userId: string) {
+
+    return this.afs.collection('users').doc(userId).snapshotChanges();
+
+  }
   getRelations(uid: string) {
     return this.afs.collection('users').doc(uid).collection('relations').get();
   }
@@ -209,4 +214,13 @@ console.log("addrelations",relation);
   //     this.router.navigateByUrl('/dashboard/tabs/profile')
   //   });
   }
+
+  getUID(): string {
+    let uid: any
+    if(JSON.parse(localStorage.getItem('user'))){
+       uid=(JSON.parse(localStorage.getItem('user'))).uid;
+      console.log(uid);}
+      return uid;
+  }
+  
 }

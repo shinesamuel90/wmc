@@ -30,6 +30,7 @@ import { IonicSelectableModule } from 'ionic-selectable';
 import { CountriesService } from './services/countries.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileDataService } from './resolver/profile-data.service';
+import { VideoService } from './services/video.service';
 
 
 
@@ -67,6 +68,7 @@ import { ProfileDataService } from './resolver/profile-data.service';
     CountriesService,
     GalleryService,
     AuthGuardService,
+    VideoService,
     
        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

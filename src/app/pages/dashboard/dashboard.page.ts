@@ -15,13 +15,19 @@ export class DashboardPage implements OnInit {
       icon: 'book'
     },
     {
-      title: 'Global Counsel',
+      title: 'Global Council',
       url: '/dashboard/tabs/global-committee-members',
       icon: 'people'
       
     },
     {
-      title: 'Province Counsel',
+      title: 'Global Council ',
+      url: '/dashboard/tabs/regional-committee-members',
+      icon: 'people'
+      
+    },
+    {
+      title: 'Province Council ',
       url: '/dashboard/tabs/committee-members',
       icon: 'people'
       

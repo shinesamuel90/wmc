@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- <button (click)="back()"></button> -->
+    <!-- <ion-buttons slot="start">
+      <ion-back-button [text]="Back" [icon]="arrow-back"> </ion-back-button>
+    </ion-buttons> -->
+    <ion-buttons slot="start">
+      <ion-back-button text="" icon="arrow-back" defaultHref ="/dashboard/tabs/view-articles">
+        
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>comments</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <!-- <ion-row class="post-content">
+      <ion-col col-2>
+        <ion-avatar item-start>
+          <img class="icon-photo" [src]="user_avatar">
+        </ion-avatar>
+      </ion-col>
+      <ion-col col-10>
+        <div>
+          <p>
+            <strong>shine</strong>&nbsp;&nbsp;&nbsp;sagdjgasjdbasdhhbdsjbhjbads
+          </p>
+        </div>
+      </ion-col>
+    </ion-row> -->
+
+    <ion-row *ngFor="let comment of comments" class="user-comments">
+    
+      <ion-col col-2>
+        <ion-avatar item-start>
+          <img class="icon-photo" [src]="comment.userPic?comment.userPic:src">
+        </ion-avatar>
+      </ion-col>
+      <ion-col col-10>
+        <div>
+          <p>
+            <strong>{{comment.user}}</strong>&nbsp;&nbsp;&nbsp;{{ comment.comment}}
+          </p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-grid>
+    <ion-row class="comment-area">
+      <ion-col col-9>
+        <ion-textarea placeholder="Enter your comment..." [(ngModel)]="user_comment"></ion-textarea>
+      </ion-col>
+      <ion-col col-3>
+        <button ion-button class="comment-button" (click)="postComment()">
+          <ion-icon name="paper-plane"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

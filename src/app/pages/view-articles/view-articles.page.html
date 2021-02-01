@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>{{ folder }}   <img src="assets/images/World-Malyalee-Council.svg" class="tool-bar-logo" /></ion-title>
+    <ion-title>{{ folder }} <img src="assets/images/World-Malyalee-Council.svg" class="tool-bar-logo" /></ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,46 +15,55 @@
   </ion-header>
 
   <div id="container">
- 
-    <ion-card class="parent-card" *ngFor="let article of articles">
+
+    <ion-card class="parent-card" *ngFor="let article of articles| async">
       <ion-card-header>
-        <p>{{article.createdAt.toDate() | date: 'medium'  }}</p>
+        <p>{{article.createdAt.toDate() | date: 'medium' }}</p>
         <ion-card-title class="primary-color">{{article.title}}</ion-card-title>
         <ion-card-subtitle class="secondary-color">{{article.subtitle}} </ion-card-subtitle>
-      
+
       </ion-card-header>
 
-      
-    
+
+
       <ion-card-content class="content-color">
         <!-- "assets/images/image1.jpg" -->
         <img src="{{ article.coverImageUrl!= null ?article.coverImageUrl : src}}" class="card-image" />
-       {{article.description}}
-       <ion-row >
-        <ion-col size="12">
-      <button class="view-more primary-btn" (click)="readMore(article.url)">View More</button>
-    </ion-col>
-      </ion-row>
+        {{article.description}}
+        <ion-row>
+          <ion-col size="12">
+            <button class="view-more primary-btn" (click)="readMore(article.url)">View More</button>
+          </ion-col>
+        </ion-row>
       </ion-card-content>
 
 
-    
+
 
       <ion-row class="footer">
         <ion-col size="12">
-          <div class="like-icon">  
-          <ion-icon name="heart-outline" ></ion-icon>
-          <p class="label-name"> 12 Likes</p>
-          </div >
-          <div   class="comment">  
-  
-          <ion-icon name="chatbubbles-outline"></ion-icon>
-          <p class="label-name"> 12 Messages</p>
+          <div class="like-icon">
+
+
+            <button  ion-button icon-start clear small *ngIf="article.likes.includes(userUid)"
+              (click)="removeHeart(article.id)">
+              <ion-icon name="heart"></ion-icon>
+            </button>
+            <button  ion-button icon-start clear small *ngIf="!article.likes.includes(userUid)" (click)="addHeart(article.id)">
+              <ion-icon name="heart-outline"></ion-icon>
+            </button>
+            <p class="label-name"> {{article.likes?article.likes.length:0}} Likes</p>
+          </div>
+          <div class="comment">
+            <button ion-button icon-start clear small (click)="toCommentSection(article)">
+            <ion-icon name="chatbubbles-outline"></ion-icon>
+            </button>
+            <p class="label-name"> {{article.comments?article.comments.length:0}} Messages</p>
           </div>
         </ion-col>
-      
+
       </ion-row>
-  
+
     </ion-card>
 
 
@@ -145,10 +154,10 @@
       </ion-row>
   
     </ion-card> -->
-    
-   
-    
-    
+
+
+
+
 
   </div>
 </ion-content>
