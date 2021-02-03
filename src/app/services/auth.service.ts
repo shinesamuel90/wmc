@@ -7,10 +7,11 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { BehaviorSubject } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Platform } from '@ionic/angular';
-import { Storage } from '@ionic/storage';
+
 import { User } from './users';
 import { Relation } from '../models/Relations';
-
+import { Plugins } from '@capacitor/core';
+const { Storage } =Plugins;
 @Injectable({
   providedIn: 'root'
 })
@@ -20,8 +21,9 @@ export class AuthService {
   
   
  
-  authState = new BehaviorSubject(false);
+  authState :BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private eventAuthError = new BehaviorSubject<string>("");
+  token= '';
   constructor(public db: AngularFireDatabase,
     public afs: AngularFirestore,   // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
@@ -29,33 +31,56 @@ export class AuthService {
     private route: ActivatedRoute,
     public ngZone: NgZone,// NgZone service to remove outside scope warning
     private storage: AngularFireStorage,
-    private storage1: Storage,
+  //  private storage1: Storage,
     private platform: Platform,
    
     ) { 
       // this.platform.ready().then(() => {
       //   this.ifLoggedIn();
       // });
-this.storage1.get('user').then((user)=>{
-  this.authState.next(true)
-  console.log(user);
+// this.storage1.get('user').then((user)=>{
+//   this.authState.next(true)
+//   console.log(user);
   
-})
+// })
+//this.ifLoggedIn()
+this.loadToken()
     }
 
-    ifLoggedIn() {
-      if( JSON.parse(localStorage.get('user'))){
-      localStorage.get('user').then((response) => {
-        if (response) {
-          this.authState.next(true);
-        }
-      });
+     async ifLoggedIn() {
+      // if( JSON.parse(localStorage.get('user'))){
+      // localStorage.get('user').then((response) => {
+      //   if (response) {
+      //     this.authState.next(true);
+      //   }
+      // });
+   // }
+   const token =  await Storage.get({key:'user'});    
+   if (token ) {
+  console.log("token",token);
+  
+    // this.token = token.value;
+     this.authState.next(true);
+   } else {
+     this.authState.next(false);
+   }
     }
+    async loadToken() {
+      const token = await Storage.get({ key: 'uid' });    
+      if (token && token.value) {
+        console.log('set token: ', token.value);
+        this.token = token.value;
+        this.authState.next(true);
+      } else {
+        this.authState.next(false);
+      }
     }
+
     // Sign in with email/password
   SignIn(email, password) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
+       
         
        
      //  this.updateToken(result.user.uid,localStorage.getItem('token'));
@@ -66,32 +91,37 @@ this.storage1.get('user').then((user)=>{
    
         
         if (result.user.emailVerified !== true&&result1.enable) {
+       //   Storage.set({KEY: 'usershine' ,value:JSON.stringify(result.user)})
+         Storage.set({key: 'user' ,value:JSON.stringify(result.user)}).then((response)=>{
+            Storage.set({key: 'uid', value: result.user.uid})
           localStorage.setItem('user', JSON.stringify(result.user));
-          this.storage1.set('user',JSON.stringify(result.user))
+         // this.storage1.set('user',JSON.stringify(result.user))
          JSON.parse(localStorage.getItem('user'));
           this.router.navigate(['dashboard']);
           this.authState.next(true);
-          
+        })
         }
         else if(result.user.emailVerified == true && result1.enable) {
           
-          this.storage1.set('user',JSON.stringify(result.user))
+         Storage.set({key:'user',value:JSON.stringify(result.user)}).then((response)=>{
          localStorage.setItem('user', JSON.stringify(result.user));
          JSON.parse(localStorage.getItem('user'));
           this.router.navigate(['dashboard']);
           this.authState.next(true);
+        })
         }//else closing
         else{
           // this.snackBar.open("user account not enabled", "action", {
           //   duration: 2000,
           // });
-          this.storage1.remove('user').then(()=>{
-            this.authState.next(false);  
-          })
-          
+          // this.storage1.remove('user').then(()=>{
+          //   this.authState.next(false);  
+          // })
+          Storage.remove({key:'user'}).then(()=>{
           localStorage.removeItem('user');
 
           this.router.navigate(['sign-in']);
+        })
         }
       })
       }).catch((error) => {
@@ -106,10 +136,15 @@ this.storage1.get('user').then((user)=>{
       this.db.object('fcmTokens/').update(data)
   }
   logout() {
-    this.storage1.remove('user').then(() => {
-      this.router.navigate(['login']);
-      this.authState.next(false);
-    });
+    // this.storage1.remove('user').then(() => {
+    //   this.router.navigate(['login']);
+    //   this.authState.next(false);
+    // });
+    Storage.remove({key:'user'}).then(()=>{
+    localStorage.removeItem('user');
+    this.authState.next(false);
+    this.router.navigate(['']);
+  });
   }
 
   isAuthenticated() {

@@ -22,7 +22,7 @@ import { MembersService } from './services/members.service';
 import { GalleryService } from './services/gallery.service';
 import { AlbumdataService } from './services/albumdata.service';
 import { AlbumDataResolverService } from './resolver/album-data-resolver.service';
-import { AuthGuardService } from './services/auth-guard.service';
+
 import { IonicStorageModule } from '@ionic/storage';
 
 import { CallNumber } from '@ionic-native/call-number/ngx';
@@ -31,6 +31,7 @@ import { CountriesService } from './services/countries.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileDataService } from './resolver/profile-data.service';
 import { VideoService } from './services/video.service';
+import { AutoLoginGuard } from './guards/auto-login.guard';
 
 
 
@@ -60,16 +61,16 @@ import { VideoService } from './services/video.service';
     ArticleService,
     MembersService,
     GalleryService,
-    AuthGuardService,
+    
     CountriesService,
     CallNumber,
     ProfileDataService,
     AlbumdataService,
     CountriesService,
     GalleryService,
-    AuthGuardService,
-    VideoService,
     
+    VideoService,
+    AutoLoginGuard,
        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

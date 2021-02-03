@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
-import{AuthGuardService}from './services/auth-guard.service';
+import { AutoLoginGuard } from './guards/auto-login.guard';
+
+
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: 'tab',
-  //   pathMatch: 'full'
-  // },
-  // {
-  //   path: 'folder/:id',
-  //   loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
-  // },
   {
     path: '',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    redirectTo: '/login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),
+   canLoad: [AutoLoginGuard]
   },
   {
     path: 'sign-up',
@@ -23,24 +22,25 @@ const routes: Routes = [
   {
     path: 'forgot-password',
     loadChildren: () => import('./pages/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
-  }
-  ,
+  },
   {
     path: 'dashboard',
     loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule),
-    canActivate: [AuthGuardService]
-  },
-  {
-    path: 'videos',
-    loadChildren: () => import('./pages/videos/videos.module').then( m => m.VideosPageModule)
-  },  {
-    path: 'regional-committee',
-    loadChildren: () => import('./pages/regional-committee/regional-committee.module').then( m => m.RegionalCommitteePageModule)
-  },
-  {
-    path: 'comments',
-    loadChildren: () => import('./pages/comments/comments.module').then( m => m.CommentsPageModule)
+  //  canActivate: [AuthGuardService]
   }
+  // ,
+  // {
+  //   path: 'videos',
+  //   loadChildren: () => import('./pages/videos/videos.module').then( m => m.VideosPageModule)
+  // },
+  // {
+  //   path: 'regional-committee',
+  //   loadChildren: () => import('./pages/regional-committee/regional-committee.module').then( m => m.RegionalCommitteePageModule)
+  // },
+  // {
+  //   path: 'comments',
+  //   loadChildren: () => import('./pages/comments/comments.module').then( m => m.CommentsPageModule)
+  // }
 
   // ,
   // {
