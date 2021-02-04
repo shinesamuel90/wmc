@@ -4,6 +4,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
+import { FcmService } from './services/fcm.service';
 
 
 @Component({
@@ -54,6 +55,7 @@ export class AppComponent implements OnInit {
     private statusBar: StatusBar,
     private menuController: MenuController,
     private authService: AuthService,
+    private fcmService:FcmService
 
   ) {
     this.initializeApp();
@@ -63,6 +65,9 @@ export class AppComponent implements OnInit {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+       // Trigger the push setup 
+       this.fcmService.initPush();
     });
   }
 

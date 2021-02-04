@@ -141,6 +141,7 @@ this.loadToken()
     //   this.authState.next(false);
     // });
     Storage.remove({key:'user'}).then(()=>{
+      Storage.remove({key:'uid'});
     localStorage.removeItem('user');
     this.authState.next(false);
     this.router.navigate(['']);
