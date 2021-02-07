@@ -1,29 +1,36 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <!-- <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
+    </ion-buttons> -->
+    <ion-buttons slot="start">
+      <ion-back-button text="" icon="arrow-back" defaultHref ="/dashboard/tabs/gallery">
+        
+      </ion-back-button>
     </ion-buttons>
     <ion-title>All photos</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true" class="ion-padding">
   <ion-grid>
     <ion-row>
+
       <ion-col size="12">
 
-<ion-slides [options]="slideOptsOne" #slideWithNav  (ionSlideDidChange)="SlideDidChange(sliderOne,slideWithNav)">
-  <ion-slide *ngFor="let photo of sliderOne.slidesItems">
-      <img src="{{photo.url}}">
-   </ion-slide>
-</ion-slides>
+        <ion-slides pager="true" [options]="slideOptsOne" #slideWithNav
+          (ionSlideDidChange)="SlideDidChange(sliderOne,slideWithNav)"  style="height:100vh;">
+          <ion-slide *ngFor="let photo of sliderOne.slidesItems">
+            <img src="{{photo.url}}">
+          </ion-slide>
+        </ion-slides>
 
 
-</ion-col>
+      </ion-col>
 
-</ion-row>
-</ion-grid>
-<!-- <h5>Slider with Space Between</h5>
+    </ion-row>
+  </ion-grid>
+  <!-- <h5>Slider with Space Between</h5>
 
    <ion-grid>
     <ion-row>
