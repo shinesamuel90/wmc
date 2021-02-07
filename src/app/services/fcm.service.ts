@@ -9,12 +9,34 @@ import {
   Capacitor
 } from '@capacitor/core';
 const { PushNotifications } = Plugins;
+
+// with type support
+import { FCM } from '@capacitor-community/fcm';
+import { Platform } from '@ionic/angular';
+import { AuthService } from './auth.service';
+const fcm = new FCM();
+
+//
+// alternatively - without types
+const { FCMPlugin } = Plugins;
+
 @Injectable({
   providedIn: 'root'
 })
 export class FcmService {
+  session: any;
 
-  constructor(private router: Router) { }
+  notifications: PushNotification[] = [];
+  //
+  // move to fcm demo
+  topicName = 'super-awesome-topic';
+  remoteToken: string;
+
+
+  constructor(private router: Router,
+    private platform: Platform,
+    private authService:AuthService
+    ) { }
   initPush() {
     if (Capacitor.platform !== 'web') {
       this.registerPush();
@@ -35,6 +57,11 @@ export class FcmService {
       (token: PushNotificationToken) => {
         console.log('My token: ' + JSON.stringify(token));
         alert('Push registration success, token: ' + token.value);
+        this.authService.authState.subscribe(state=>{
+          if(state){
+            this.authService.addFcmToken(token.value);
+          }
+        })
       }
     );
  
@@ -62,5 +89,34 @@ export class FcmService {
         // }
       }
     );
+  }
+  //
+  // move to fcm demo
+  subscribeTo() {
+    PushNotifications.register()
+      .then((_) => {
+        fcm
+          .subscribeTo({ topic: this.topicName })
+          .then((r) => alert(`subscribed to topic ${this.topicName}`))
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => alert(JSON.stringify(err)));
+  }
+
+  unsubscribeFrom() {
+    fcm
+      .unsubscribeFrom({ topic: 'test' })
+      .then((r) => alert(`unsubscribed from topic ${this.topicName}`))
+      .catch((err) => console.log(err));
+    if (this.platform.is('android')) fcm.deleteInstance();
+  }
+
+  getToken() {
+    fcm
+      .getToken()
+      .then((result) => {
+        this.remoteToken = result.token;
+      })
+      .catch((err) => console.log(err));
   }
 }

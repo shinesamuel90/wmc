@@ -68,6 +68,7 @@ export class AppComponent implements OnInit {
 
        // Trigger the push setup 
        this.fcmService.initPush();
+       this.fcmService.subscribeTo();
     });
   }
 

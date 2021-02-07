@@ -17,6 +17,7 @@ const { Storage } =Plugins;
 })
 export class AuthService {
  
+ 
   
   
   
@@ -262,6 +263,12 @@ console.log("addrelations",relation);
        uid=(JSON.parse(localStorage.getItem('user'))).uid;
       console.log(uid);}
       return uid;
+  }
+
+  addFcmToken(token: string) {
+
+   let uid= this.getUID()
+    return this.afs.collection('users').ref.doc(uid).collection('relations').add({"token":token});
   }
   
 }

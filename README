@@ -23,6 +23,11 @@ firebase deploy
 https://medium.com/enappd/firebase-push-notifications-in-ionic-apps-d90c6550fdb7
 
 
+firebase functions  trigger based on date
+
+https://stackoverflow.com/questions/54323163/how-to-trigger-function-when-date-stored-in-firestore-database-is-todays-date
+
+
 https://www.youtube.com/watch?v=Q-LICc8Nidc
 
 
