@@ -58,4 +58,8 @@ this.authService.SignIn(this.loginForm.value.username,this.loginForm.value.passw
     // enable the root left menu when leaving the tutorial page
     this.menuController.enable(true);
   }
+  clear(){
+    console.log("clear");
+    
+  }
 }

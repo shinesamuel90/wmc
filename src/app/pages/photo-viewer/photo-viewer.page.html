@@ -19,7 +19,7 @@
       <ion-col size="12">
 
         <ion-slides pager="true" [options]="slideOptsOne" #slideWithNav
-          (ionSlideDidChange)="SlideDidChange(sliderOne,slideWithNav)"  style="height:100vh;">
+          (ionSlideDidChange)="SlideDidChange(sliderOne,slideWithNav)"  style="height:100%;">
           <ion-slide *ngFor="let photo of sliderOne.slidesItems">
             <img src="{{photo.url}}">
           </ion-slide>

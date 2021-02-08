@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { IonicSelectableComponent } from 'ionic-selectable';
 import { CountriesService } from 'src/app/services/countries.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-sign-up',
@@ -44,33 +45,33 @@ export class SignUpPage implements OnInit {
     ],
     'firstName': [
       { type: 'required', message: 'FirstName is required.' }
-     
+
     ],
     'lastName': [
       { type: 'required', message: 'LastName is required.' }
-     
+
     ],
     'mobileNumber': [
       { type: 'required', message: 'Mobile number is required.' }
-     
+
     ],
     'countryCode': [
       { type: 'required', message: 'Country code is required.' }
-     
+
     ],
     'region': [
       { type: 'required', message: 'Region is required.' }
-     
+
     ],
     'country': [
       { type: 'required', message: 'Country is required.' }
-     
+
     ],
     'province': [
       { type: 'required', message: 'Province is required.' }
-     
+
     ]
-    
+
   };
 
   regions: Region[];
@@ -83,7 +84,8 @@ export class SignUpPage implements OnInit {
     private authService: AuthService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private countryService: CountriesService
+    private countryService: CountriesService,
+    public toastController: ToastController
   ) {
 
     this.regions = [
@@ -123,9 +125,15 @@ export class SignUpPage implements OnInit {
     this.authService.register(value)
       .then(res => {
         console.log(res);
-        this.errorMessage = "";
-        this.successMessage = "Your account has been created. Please log in.";
-        this.router.navigate(['']);
+
+        this.toastController.create({
+          message: 'Your account has been created. Please log in.',
+          duration: 2000
+        }).then((toast) => {
+          toast.present();
+          this.router.navigate(['']);
+        })
+
       }, err => {
         console.log(err);
         this.errorMessage = err.message;
@@ -153,7 +161,7 @@ export class SignUpPage implements OnInit {
     })
   }
 
- countryChange(
+  countryChange(
     event: {
       component: IonicSelectableComponent,
       value: any

@@ -6,11 +6,12 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Platform } from '@ionic/angular';
+import { Platform, ToastController } from '@ionic/angular';
 
 import { User } from './users';
 import { Relation } from '../models/Relations';
 import { Plugins } from '@capacitor/core';
+import { LoginPage } from '../pages/login/login.page';
 const { Storage } =Plugins;
 @Injectable({
   providedIn: 'root'
@@ -34,28 +35,15 @@ export class AuthService {
     private storage: AngularFireStorage,
   //  private storage1: Storage,
     private platform: Platform,
-   
+    private toastController: ToastController,
+  // private loginComponet:LoginPage
     ) { 
-      // this.platform.ready().then(() => {
-      //   this.ifLoggedIn();
-      // });
-// this.storage1.get('user').then((user)=>{
-//   this.authState.next(true)
-//   console.log(user);
-  
-// })
-//this.ifLoggedIn()
+     
 this.loadToken()
     }
 
      async ifLoggedIn() {
-      // if( JSON.parse(localStorage.get('user'))){
-      // localStorage.get('user').then((response) => {
-      //   if (response) {
-      //     this.authState.next(true);
-      //   }
-      // });
-   // }
+     
    const token =  await Storage.get({key:'user'});    
    if (token ) {
   console.log("token",token);
@@ -87,22 +75,24 @@ this.loadToken()
      //  this.updateToken(result.user.uid,localStorage.getItem('token'));
       
       const userDocument = this.afs.collection('users').doc(result.user.uid).ref;
-       userDocument.get().then((doc) => {
+       userDocument.get().then(async (doc) => {
         const result1 = doc.exists ? doc.data() : null;
    
         
         if (result.user.emailVerified !== true&&result1.enable) {
-       //   Storage.set({KEY: 'usershine' ,value:JSON.stringify(result.user)})
+       console.log("if");
+       
          Storage.set({key: 'user' ,value:JSON.stringify(result.user)}).then((response)=>{
             Storage.set({key: 'uid', value: result.user.uid})
           localStorage.setItem('user', JSON.stringify(result.user));
-         // this.storage1.set('user',JSON.stringify(result.user))
+         
          JSON.parse(localStorage.getItem('user'));
           this.router.navigate(['dashboard']);
           this.authState.next(true);
         })
         }
         else if(result.user.emailVerified == true && result1.enable) {
+          console.log("first else if");
           
          Storage.set({key:'user',value:JSON.stringify(result.user)}).then((response)=>{
          localStorage.setItem('user', JSON.stringify(result.user));
@@ -110,18 +100,29 @@ this.loadToken()
           this.router.navigate(['dashboard']);
           this.authState.next(true);
         })
-        }//else closing
+        }
+        else if(result.user.emailVerified!==true&&result1.enable!==true){
+       console.log("2 else if");
+       
+       this.toastController.create({
+            message: 'Verification requeried from admin side.',
+            duration: 2000
+          }).then((toast)=>{
+           toast.present();
+          // this.loginComponet.clear();
+          // this.router.navigate(['']);
+          })
+         
+        }
         else{
-          // this.snackBar.open("user account not enabled", "action", {
-          //   duration: 2000,
-          // });
-          // this.storage1.remove('user').then(()=>{
-          //   this.authState.next(false);  
-          // })
+         
           Storage.remove({key:'user'}).then(()=>{
-          localStorage.removeItem('user');
+            Storage.remove({key:'uid'}).then(()=>{
+              localStorage.removeItem('user');
 
-          this.router.navigate(['sign-in']);
+              this.router.navigate(['sign-in']);
+            })
+        
         })
         }
       })
@@ -202,8 +203,8 @@ this.loadToken()
         displayName: user.firstName+" "+user.lastName,
         photoURL: user.photoURL,
         emailVerified: user.emailVerified,
-        lastName: user.lastName,
-        firstName: user.firstName,
+        lastName: user.lastName.trim(),
+        firstName: user.firstName.trim(),
         role: {
           user: true
         },
@@ -268,7 +269,9 @@ console.log("addrelations",relation);
   addFcmToken(token: string) {
 
    let uid= this.getUID()
-    return this.afs.collection('users').ref.doc(uid).collection('relations').add({"token":token});
+    return this.afs.collection('users').ref.doc(uid).collection('tokens').add({"token":token});
   }
+  
+
   
 }
