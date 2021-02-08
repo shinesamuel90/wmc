@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController, NavParams } from '@ionic/angular';
@@ -26,7 +27,8 @@ export class CommentsPage implements OnInit {
     private route: ActivatedRoute,
     private navCtrl: NavController,
     private articleService: ArticleService,
-    private authService: AuthService
+    private authService: AuthService,
+    
   ) { }
 
   ngOnInit() {
@@ -41,7 +43,7 @@ export class CommentsPage implements OnInit {
   getExistingComments() {
     // this.article=this.articleService.getArticle(this.post_id);
 
-    this.articleService.getComments(this.post_id).subscribe(data => {
+    this.articleService.getComments(this.post_id).then(data => {
       data.docs.forEach(doc => {
         console.log(doc.data().message);
         
@@ -50,7 +52,7 @@ export class CommentsPage implements OnInit {
           createdDate: doc.data().createdAt
         });
          console.log(this.comments);
-
+        // this.comments=this.comments.sort((a,b)=>{return b.createdDate-a.createdDate});
       })
     })
 

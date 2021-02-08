@@ -8,6 +8,7 @@ import * as firebase from 'firebase';
   providedIn: 'root'
 })
 export class ArticleService {
+ 
   
   
   
@@ -59,7 +60,7 @@ export class ArticleService {
     return this.fstore.collection('uploads').doc(post_id);
   }
   getComments(post_id: any) {
-    return this.fstore.collection('uploads').doc(post_id).collection('comments').get()
+    return this.fstore.collection('uploads').doc(post_id).collection('comments').ref.orderBy("createdAt","desc").get();
   }
   addCommentId(postId:string,commentId: string) {
     const updateRef = this.fstore.collection('uploads').doc(postId)
@@ -67,4 +68,5 @@ export class ArticleService {
       comments: firestore.FieldValue.arrayUnion(commentId)
     });
   }
+  
 }

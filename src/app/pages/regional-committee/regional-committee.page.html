@@ -1,9 +1,35 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>regional-committee</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Regional Council   <img src="assets/images/World-Malyalee-Council.svg" class="tool-bar-logo" /> </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-toolbar>
+    <ion-searchbar (ionInput)="filterItems($event)"></ion-searchbar>
+  </ion-toolbar>
 
+  <div *ngFor="let member of members  ">
+  
+    <ion-row class="member-list">
+      <ion-col size="3">
+        <img
+          src="{{ member.photoURL!= null ?member.photoURL : src}}"
+          class="pro-image"
+        />
+      </ion-col>
+      <ion-col size="9">
+        <ion-label class="primary-color"
+          >{{member.firstName}} {{member.lastName}}</ion-label
+        >
+        <p class="desig secondary-color">{{member.r_designation.designation}}</p>
+        <p class="desig2">{{member.mobile.internationalNumber?member.mobile.internationalNumber:member.mobile}}</p>
+      </ion-col>
+    </ion-row>
+  </div>
+ 
 </ion-content>
+

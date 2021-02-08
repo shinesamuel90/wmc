@@ -9,6 +9,7 @@ import { User } from './users';
 export class MembersService {
  
  
+ 
 
   constructor(public db: AngularFireDatabase,
     public firestore: AngularFirestore) { }
@@ -27,7 +28,7 @@ export class MembersService {
 }
  getCommitteeMembers(){
 
-  return this.firestore.collection('users',ref=>ref.where('is_committee_member', '==', 'Yes'));
+  return this.firestore.collection('users',ref=>ref.where('is_province_committee_member', '==', 'Yes'));
 
 // Create a query against the collection
 
@@ -35,5 +36,8 @@ export class MembersService {
  getGlobalCommitteeMembers() {
   return this.firestore.collection('users',ref=>ref.where('is_global_committee_member', '==', 'Yes'));
 
+}
+getRegionalCommitteeMembers() {
+  return this.firestore.collection('users',ref=>ref.where('is_regional_committee_member', '==', 'Yes'));
 }
 }

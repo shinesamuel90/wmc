@@ -20,7 +20,7 @@ export class CommitteeMembersPage implements OnInit {
   async initializeItems(): Promise<any> {
     let foodList:any[]=[];
      foodList = await this.membersService.getCommitteeMembers().valueChanges().pipe(first()).toPromise();
-    let newarr = foodList.sort((a, b) => a.order - b.order);
+    let newarr = foodList.sort((a, b) => a.p_designation.order - b.p_designation.order);
     console.log(newarr);
     
     return newarr;

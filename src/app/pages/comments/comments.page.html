@@ -15,10 +15,10 @@
 
 <ion-content>
   <ion-grid>
-    <!-- <ion-row class="post-content">
+     <!-- <ion-row class="post-content">
       <ion-col col-2>
         <ion-avatar item-start>
-          <img class="icon-photo" [src]="user_avatar">
+          <img class="icon-photo" [src]="src">
         </ion-avatar>
       </ion-col>
       <ion-col col-10>
@@ -28,11 +28,25 @@
           </p>
         </div>
       </ion-col>
-    </ion-row> -->
-
+    </ion-row>  -->
+    <!-- <ion-row class="user-comments">
+      <ion-col col-2>
+        <ion-avatar item-start>
+          <img class="icon-photo" [src]="src">
+        </ion-avatar>
+      </ion-col>
+      <ion-col col-10>
+        <div>
+          <p>
+            <strong>shine samuel mathew</strong>&nbsp;&nbsp;&nbsp;sagdjgasjdbasdhhbdsjbhjbads
+          </p>
+        </div>
+      </ion-col>
+    </ion-row>  -->
+    
     <ion-row *ngFor="let comment of comments" class="user-comments">
     
-      <ion-col col-2>
+      <ion-col size="2">
         <ion-avatar item-start>
           <img class="icon-photo" [src]="comment.userPic?comment.userPic:src">
         </ion-avatar>

@@ -84,13 +84,13 @@ addHeart(id:string){
     this.router.navigate(['/dashboard/tabs/comments',post_data.id]);
     //this.navCtrl.navigateForward(['/dashboard/tabs/comments',post_data.id]);
   }
-  showMessageCount(articleId:string){
-     this.articleService.getComments(articleId).subscribe(data=>{
-console.log("comments size",data.size);
+//   showMessageCount(articleId:string){
+//      this.articleService.getCommentss(articleId).subscribe(data=>{
+// console.log("comments size",data.size);
 
-     // return data.size
-    })
+//      // return data.size
+//     })
     
-  }
+//   }
  }
 
