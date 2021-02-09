@@ -92,5 +92,7 @@ addHeart(id:string){
 //     })
     
 //   }
+
+shareArticle(article:any){}
  }
 
