@@ -11,7 +11,8 @@ import { Observable } from 'rxjs';
 import { FileUploadId } from 'src/app/services/FileUploadId';
 import { NavController, NavParams } from '@ionic/angular';
 import { CommentsPage } from '../comments/comments.page';
-
+import { Plugins } from '@capacitor/core';
+const { Share } = Plugins;
 @Component({
   selector: 'app-view-articles',
   templateUrl: './view-articles.page.html',
@@ -92,5 +93,15 @@ addHeart(id:string){
 //     })
     
 //   }
+
+  async shareArticle(article:any){
+  let shareRet = await Share.share({
+    title: article.title,
+    text: article.subtitle,
+    url: article.coverImageUrl,
+    dialogTitle:article.title,
+
+  });
+}
  }
 

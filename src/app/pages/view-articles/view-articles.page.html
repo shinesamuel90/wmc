@@ -60,6 +60,12 @@
             </button>
             <p class="label-name"> {{article.comments?article.comments.length:0}} Messages</p>
           </div>
+          <div class="comment">
+            <button ion-button icon-start clear large (click)="shareArticle(article)">
+           <ion-icon name="share-social-outline"></ion-icon>
+            </button>
+            <p class="label-name"> Share</p>
+          </div>
         </ion-col>
 
       </ion-row>
