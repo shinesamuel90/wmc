@@ -1,11 +1,11 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { Platform, MenuController } from '@ionic/angular';
+import { Platform, MenuController, IonRouterOutlet, AlertController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
 import { FcmService } from './services/fcm.service';
-
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -55,8 +55,10 @@ export class AppComponent implements OnInit {
     private statusBar: StatusBar,
     private menuController: MenuController,
     private authService: AuthService,
-    private fcmService:FcmService
-
+    private fcmService:FcmService,
+    private _location: Location,
+    public alertController: AlertController
+   
   ) {
     this.initializeApp();
   }
@@ -70,6 +72,56 @@ export class AppComponent implements OnInit {
        this.fcmService.initPush();
        this.fcmService.subscribeTo();
     });
+    this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
+      console.log('Back press handler!');
+      if (this._location.isCurrentPathEqualTo('/login')) {
+
+        // Show Exit Alert!
+        console.log('Show Exit Alert!');
+        this.showExitConfirm();
+        processNextHandler();
+      } else {
+
+        // Navigate to back page
+        console.log('Navigate to back page');
+        this._location.back();
+
+      }
+
+    });
+
+    this.platform.backButton.subscribeWithPriority(5, () => {
+      console.log('Handler called to force close!');
+      this.alertController.getTop().then(r => {
+        if (r) {
+          navigator['app'].exitApp();
+        }
+      }).catch(e => {
+        console.log(e);
+      })
+    });
+  }
+  showExitConfirm() {
+    this.alertController.create({
+      header: 'App termination',
+      message: 'Do you want to close the app?',
+      backdropDismiss: false,
+      buttons: [{
+        text: 'Stay',
+        role: 'cancel',
+        handler: () => {
+          console.log('Application exit prevented!');
+        }
+      }, {
+        text: 'Exit',
+        handler: () => {
+          navigator['app'].exitApp();
+        }
+      }]
+    })
+      .then(alert => {
+        alert.present();
+      });
   }
 
   ngOnInit() {

@@ -102,6 +102,15 @@ addHeart(id:string){
     dialogTitle:article.title,
 
   });
+  // const abc=article.title;
+  // console.log(abc);
+  // abc="shine";
+  // var var1="shine";
+  // var var1="shine"
+  // let let1="shine"
+  // let1="shine"
+  // let let1="shine"
+  
 }
  }
 

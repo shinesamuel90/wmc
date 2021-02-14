@@ -23,7 +23,7 @@ export class AuthService {
   
   
  
-  authState :BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  authState :BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
   private eventAuthError = new BehaviorSubject<string>("");
   token= '';
   constructor(public db: AngularFireDatabase,
