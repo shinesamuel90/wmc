@@ -265,11 +265,20 @@ console.log("addrelations",relation);
       console.log(uid);}
       return uid;
   }
+  getUserToken(){
+    let user:any
+    if(JSON.parse(localStorage.getItem('user'))){
+      user=(JSON.parse(localStorage.getItem('user')));
+     console.log(user);}
+     return user;
+  }
 
   addFcmToken(token: string) {
+console.log("AddFcmToken");
 
    let uid= this.getUID()
-    return this.afs.collection('users').ref.doc(uid).collection('tokens').add({"token":token});
+   return this.afs.collection('users').ref.doc(uid).update({'tokenId':token})
+  //  return this.afs.collection('users').ref.doc(uid).collection('tokens').add({"token":token});
   }
   
 

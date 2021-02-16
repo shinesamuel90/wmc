@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { firestore } from 'firebase/app';
 import { FileUpload } from './article';
 import * as firebase from 'firebase';
+import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +18,9 @@ export class ArticleService {
 
   private basePath = '/uploads';
   constructor(
-    public fstore: AngularFirestore) { }
+    public fstore: AngularFirestore,
+    private authService: AuthService
+    ) { }
 
   getArticles(): AngularFirestoreCollection<FileUpload> {
 
@@ -53,6 +56,7 @@ export class ArticleService {
         'userPic': currentUser.photoURL,
         'createdBy': currentUser.displayName,
         'createdAt': firebase.firestore.FieldValue.serverTimestamp()
+       
       }
       return this.fstore.collection('uploads').ref.doc(post_id).collection('comments').add(comments);
   }
