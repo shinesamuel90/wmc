@@ -44,27 +44,37 @@
         <ion-col size="12">
           <div class="like-icon">
 
-
+         <div *ngIf="article.likes!==undefined">
             <button  ion-button icon-start clear small *ngIf="article.likes.includes(userUid)"
               (click)="removeHeart(article.id)">
               <ion-icon name="heart"></ion-icon>
             </button>
+          
             <button  ion-button icon-start clear small *ngIf="!article.likes.includes(userUid)" (click)="addHeart(article.id)">
               <ion-icon name="heart-outline"></ion-icon>
             </button>
             <p class="label-name"> {{article.likes?article.likes.length:0}} Likes</p>
           </div>
+          <div *ngIf="article.likes==undefined">
+
+            <button  ion-button icon-start clear small  (click)="addHeart(article.id)">
+              <ion-icon name="heart-outline"></ion-icon>
+            </button>
+            <p class="label-name"> 0 Likes</p>
+
+          </div>
+          </div>
           <div class="comment">
             <button ion-button icon-start clear small (click)="toCommentSection(article)">
             <ion-icon name="chatbubbles-outline"></ion-icon>
             </button>
-            <p class="label-name"> {{article.comments?article.comments.length:0}} Messages</p>
+            <p class="label-name"> {{article.comments?article.comments.length:0}} Messages </p>
           </div>
           <div class="comment">
             <button ion-button icon-start clear large (click)="shareArticle(article)">
            <ion-icon name="share-social-outline"></ion-icon>
             </button>
-            <p class="label-name"> Share</p>
+            <p class="label-name"> Share </p>
           </div>
         </ion-col>
 

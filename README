@@ -54,3 +54,12 @@ service cloud.firestore {
     }
   }
 }
+
+https://crontab.guru/
+
+
+Firebase functions
+npm install -g firebase-tools
+firebase login
+firebase init firestore
+firebase init functions

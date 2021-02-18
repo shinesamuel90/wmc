@@ -29,7 +29,7 @@ export class FcmService {
   notifications: PushNotification[] = [];
   //
   // move to fcm demo
-  topicName = 'super-awesome-topic';
+  topicName = 'new-article';
   remoteToken: string;
 
 
@@ -59,7 +59,10 @@ export class FcmService {
        // alert('Push registration success, token: ' + token.value);
         this.authService.authState.subscribe(state=>{
           if(state){
-            this.authService.addFcmToken(token.value);
+            this.authService.addFcmToken(token.value).then(()=>{
+              console.log("token updated");
+              
+            });
           }
         })
       }
@@ -97,6 +100,17 @@ export class FcmService {
       .then((_) => {
         fcm
           .subscribeTo({ topic: this.topicName })
+          .then((r) =>{
+
+        //  alert(`subscribed to topic ${this.topicName}`)
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => alert(JSON.stringify(err)));
+      PushNotifications.register()
+      .then((_) => {
+        fcm
+          .subscribeTo({ topic:'new-album' })
           .then((r) =>{
 
         //  alert(`subscribed to topic ${this.topicName}`)
