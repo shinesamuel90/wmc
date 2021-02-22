@@ -48,7 +48,7 @@ export class ViewArticlesPage implements OnInit {
     // });
    this.getArticles();
    this.userUid=this.user.getUID();
-   
+   this.articleService.getUsersBasedOnDob();
 
    
   }

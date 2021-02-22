@@ -9,6 +9,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class ArticleService {
+  
  
   
   
@@ -71,6 +72,32 @@ export class ArticleService {
     return updateRef.update({
       comments: firestore.FieldValue.arrayUnion(commentId)
     });
+  }
+  getUsersBasedOnDob() {
+    const current = new Date();
+
+current.setHours(0)
+
+current.setMinutes(0)
+
+current.setSeconds(0)
+
+current.setMilliseconds(0)
+
+const timestamp = current.getTime();
+    
+    const firstDay=new Date("2021-02-20")
+    const today =  new Date("2021-02-20");
+    const tomorrow =  new Date(today.setDate(today.getDate() + 1));
+    console.log("getUsersBasedOnDob",timestamp);
+    const timestamp1 = firestore.Timestamp.fromDate(firstDay);
+    this.fstore.collection('users').ref.where('shortDob',"==",'20/02/2021').get()
+    .then((querySnapshot)=>{
+      querySnapshot.forEach(data=>{
+        console.log(data.data());
+        
+      })
+    })
   }
   
 }
