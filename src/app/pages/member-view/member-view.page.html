@@ -1,0 +1,122 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons> -->
+    <ion-buttons slot="start">
+      <ion-back-button text="" icon="arrow-back" defaultHref ="/dashboard/tabs/members">
+        
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>Profile      <img src="assets/images/World-Malyalee-Council.svg" class="tool-bar-logo" />  </ion-title>
+ 
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" size="small" data-desc="Add Relations" (click)="addRelations()">
+    <ion-icon name="add"></ion-icon>
+    </ion-fab-button> 
+    </ion-fab> -->
+  <ion-card class="parent-card">
+    <ion-card-header>
+      <ion-row class="profile-head">
+        <ion-col size="4">
+          <img [src]="currentUser.photoURL" class="pro-image" />
+          <!-- <img src="assets/images/shabu_1.jpeg" class="pro-image" /> -->
+          </ion-col>
+          <ion-col size="8">
+            <h3 class="primary-color">{{currentUser.displayName}}</h3>
+            <p> <ion-icon name="mail-outline" class="secondary-color"></ion-icon> {{currentUser.email}}</p>
+            <p> <ion-icon name="call-outline" class="secondary-color"></ion-icon> {{currentUser.mobile.internationalNumber}}</p>
+         <!-- <div *ngIf="currentUser.is_committee_member=='Yes'">
+          <ion-badge color="secondary-color" class="secondary-color">{{currentUser.designation}}</ion-badge>
+         </div>
+         <div *ngIf="currentUser.is_global_committee_member=='Yes'">
+          <ion-badge color="secondary-color" class="secondary-color">{{currentUser.g_designation}}</ion-badge>
+         </div> -->
+           
+          </ion-col>
+          </ion-row>
+
+    </ion-card-header>
+
+    
+  
+    <ion-card-content class="profile-contant">
+
+      <ion-row>
+        <ion-col size="6" class="col-no-padding-tb">
+          <ion-label> Sex</ion-label>
+          <p> {{currentUser.sex}}</p>
+
+          </ion-col>
+      </ion-row>
+<ion-row>
+      <ion-col size="6" class="col-no-padding-tb">
+            <ion-label> Date Of Birth</ion-label>
+            <p> {{currentUser.dobDate.seconds * 1000|date: 'dd-MM-yyyy'}}</p>
+          </ion-col>
+          <ion-col size="6" class="col-no-padding-tb">
+            <ion-label> Anniversary</ion-label>
+            <p> {{currentUser.anniversaryDate.seconds * 1000|date: 'dd-MM-yyyy'}}</p>
+          </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="6" class="col-no-padding-tb">
+              <ion-label> Country</ion-label>
+              <p>{{currentUser.country}}</p>
+              </ion-col>
+              <ion-col size="6" class="col-no-padding-tb">
+                <ion-label> Province</ion-label>
+                <p> {{currentUser.province}}</p>
+              </ion-col>
+              </ion-row>
+    
+
+
+     
+    </ion-card-content>
+    <!-- <ion-row>
+      <ion-col size="12">
+
+    <h3 class="family-member-head">Family Members</h3>
+
+    </ion-col>
+    
+    </ion-row> -->
+    <!-- <ion-card-content class="relation" *ngFor="let relation of relations">
+
+      <ion-row>
+        <ion-col size="3">
+
+          <img src="assets/images/dummy-user.png" class="relation-image" />
+         
+          </ion-col>
+          <ion-col size="7">
+            <h3 class="primary-color"> {{relation.name}}</h3>
+            <p class="no-m-para">{{relation.relation}}</p>
+            <p>{{relation.mobile}} </p>
+  
+          </ion-col>
+          <ion-col size="2">
+            <ion-icon name="call" class="call-icon"></ion-icon>
+          </ion-col>
+          </ion-row>
+               </ion-card-content> -->
+       </ion-card>
+
+</ion-content>
+<ion-footer>
+  <div class="bottom_bar">
+    <p class="info1" style="text-align: center;
+    margin: 0px;
+    margin-bottom: 4px;
+
+    color: #383838;
+    font-size: 12px;">
+    Developed by INSYSME</p>
+    <!-- put some elements here -->
+  </div>
+</ion-footer>

@@ -15,7 +15,7 @@
   <ion-toolbar>
     <ion-searchbar (ionInput)="filterItems($event)"></ion-searchbar>
   </ion-toolbar>
-<div *ngFor="let member of members ">
+<div *ngFor="let member of members" (click)="goToMemberView(member)">
     <ion-row class="member-list" >
      
       <ion-col size="3">

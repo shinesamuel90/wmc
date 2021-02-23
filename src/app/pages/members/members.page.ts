@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MembersService } from 'src/app/services/members.service';
 import { first } from 'rxjs/operators';
 import { CallNumber } from '@ionic-native/call-number/ngx';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { User } from 'src/app/services/users';
 @Component({
   selector: 'app-members',
   templateUrl: './members.page.html',
@@ -14,7 +15,8 @@ export class MembersPage implements OnInit {
   province: any;
   constructor(private membersService: MembersService,
     private callNumber: CallNumber,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private router:Router
   ) { }
 
   async ngOnInit() {
@@ -56,5 +58,14 @@ export class MembersPage implements OnInit {
   call() {
     this.callNumber.callNumber('3525235235235', true).then(res => console.log('Launched dialer!', res))
       .catch(err => console.log('Error launching dialer', err));
+  }
+  goToMemberView(member:User){
+    console.log("member click>>>",member);
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+          "user": JSON.stringify(member)
+      }
+    };
+    this.router.navigate(["/dashboard/tabs/member-view",{ "user": JSON.stringify(member)}])
   }
 }

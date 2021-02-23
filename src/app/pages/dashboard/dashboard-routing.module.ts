@@ -70,6 +70,10 @@ const routes: Routes = [
     path: 'add-relations',
     loadChildren: () => import('../add-relations/add-relations.module').then( m => m.AddRelationsPageModule)
   },
+  {
+    path: 'member-view',
+    loadChildren: () => import('../member-view/member-view.module').then( m => m.MemberViewPageModule)
+  },
       
   // {
   //   path: 'gallery',
