@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { MembersService } from 'src/app/services/members.service';
+import { User } from 'src/app/services/users';
 
 @Component({
   selector: 'app-regional-committee',
@@ -11,7 +13,8 @@ export class RegionalCommitteePage implements OnInit {
   members: any[];
   src="/assets/images/dummy-user.png"
   constructor(
-    private membersService:MembersService
+    private membersService:MembersService,
+    private router:Router
   ) { }
 
   async ngOnInit() {
@@ -37,5 +40,10 @@ export class RegionalCommitteePage implements OnInit {
     } else {
       this.members = await this.initializeItems();
     }
+    }
+    goToMemberView(member:User){
+      console.log("member click>>>",member);
+     
+      this.router.navigate(["/dashboard/tabs/member-view",{ "user": JSON.stringify(member)}])
     }
 }

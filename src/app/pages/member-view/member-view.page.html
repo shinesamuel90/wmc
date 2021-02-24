@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons> -->
     <ion-buttons slot="start">
-      <ion-back-button text="" icon="arrow-back" defaultHref ="/dashboard/tabs/members">
+      <ion-back-button text="" icon="arrow-back" defaultHref ="{{previousUrl | async}}">
         
       </ion-back-button>
     </ion-buttons>

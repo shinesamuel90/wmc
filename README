@@ -64,3 +64,8 @@ firebase login
 firebase init firestore
 firebase init functions
 firebase deploy --only functions
+
+
+ionic previous url
+
+https://jacobneterer.medium.com/accessing-the-previous-url-in-angular-32cf97bec3ce

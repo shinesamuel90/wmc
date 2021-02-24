@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MembersService } from 'src/app/services/members.service';
-import { first } from 'rxjs/operators';
+import { filter, first } from 'rxjs/operators';
 import { CallNumber } from '@ionic-native/call-number/ngx';
-import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, NavigationExtras, Router } from '@angular/router';
 import { User } from 'src/app/services/users';
+import { UrlService } from 'src/app/services/url.service';
 @Component({
   selector: 'app-members',
   templateUrl: './members.page.html',
@@ -13,10 +14,14 @@ export class MembersPage implements OnInit {
   members: any[];
   src = "/assets/images/dummy-user.png"
   province: any;
+  previousUrl: string = null;
+  currentUrl: string = null;
+
   constructor(private membersService: MembersService,
     private callNumber: CallNumber,
     private activeRoute: ActivatedRoute,
-    private router:Router
+    private router:Router,
+    private urlService: UrlService
   ) { }
 
   async ngOnInit() {
@@ -30,7 +35,13 @@ export class MembersPage implements OnInit {
         this.province = data.payload.data().province;
       }
     });
-
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      this.previousUrl = this.currentUrl;
+      this.currentUrl = event.url;
+      this.urlService.setPreviousUrl(this.previousUrl);
+    });
     this.members = await this.initializeMembers(this.province);
 
   }

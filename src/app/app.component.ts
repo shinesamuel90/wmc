@@ -3,9 +3,11 @@ import { Platform, MenuController, IonRouterOutlet, AlertController } from '@ion
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthService } from './services/auth.service';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { FcmService } from './services/fcm.service';
 import { Location } from '@angular/common';
+import { filter } from 'rxjs/operators';
+import { UrlService } from './services/url.service';
 
 @Component({
   selector: 'app-root',
@@ -48,6 +50,8 @@ export class AppComponent implements OnInit {
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
   tabshow: boolean;
+  previousUrl: string = null;
+  currentUrl: string = null;
   constructor(
     private router: Router,
     private platform: Platform,
@@ -57,7 +61,8 @@ export class AppComponent implements OnInit {
     private authService: AuthService,
     private fcmService:FcmService,
     private _location: Location,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private urlService: UrlService
    
   ) {
     this.initializeApp();
@@ -129,6 +134,13 @@ export class AppComponent implements OnInit {
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      this.previousUrl = this.currentUrl;
+      this.currentUrl = event.url;
+      this.urlService.setPreviousUrl(this.previousUrl);
+    });
   }
   ngAfterViewInit() {
     this.tabshow = true;
