@@ -11,7 +11,7 @@ import { UrlService } from 'src/app/services/url.service';
   styleUrls: ['./members.page.scss'],
 })
 export class MembersPage implements OnInit {
-  members: any[];
+  members: any[]=[];
   src = "/assets/images/dummy-user.png"
   province: any;
   previousUrl: string = null;
@@ -42,17 +42,24 @@ export class MembersPage implements OnInit {
       this.currentUrl = event.url;
       this.urlService.setPreviousUrl(this.previousUrl);
     });
-    this.members = await this.initializeMembers(this.province);
-
+   // this.members = await this.initializeMembers(this.province);
+   await this.initializeMembers(this.province);
   }
   // initializeMembers(province: any): any[] | PromiseLike<any[]> {
   //   throw new Error('Method not implemented.');
   // }
   async initializeMembers(province: string): Promise<any> {
-    const memberList = await this.membersService.getUsersByProvince(province).valueChanges().pipe(first()).toPromise();
-    console.log(memberList);
+    // const memberList = await this.membersService.getUsersByProvince(province).valueChanges().pipe(first()).toPromise();
+    // console.log("memberList",memberList);
     
-    return memberList;
+    // return memberList;
+await (await this.membersService.getUsersByProvince(province)).forEach(doc=>{
+
+  this.members.push(doc.data())
+})
+
+
+
   }
   async filterItems(ev: any) {
     // debugger;

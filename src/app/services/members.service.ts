@@ -19,12 +19,26 @@ export class MembersService {
     return this.firestore.collection('users');
     
  }
- getUsersByProvince(province: string) {
-   console.log(province);
-   const users=this.firestore.collection('users',ref=>ref.where('province','==','Masqat'));
-   console.log(users);
-   
-  return users
+ async getUsersByProvince(province: string) {
+  //  console.log(province);
+  //  const users=this.firestore.collection('users',ref=>ref.where('province','==',province.trim()));
+  //  console.log("users",users);
+  //  users.get().forEach(element=>{
+  //    console.log("element",element);
+     
+  //  })
+  // return users.get()
+
+  const membersRef = this.firestore.collection('users').ref;
+const snapshot = await membersRef.where('province', '==', province).get();
+if (snapshot.empty) {
+  console.log('No matching documents.');
+  return;
+}  
+snapshot.forEach(doc => {
+  console.log(doc.id, '=>', doc.data());
+});
+return snapshot
 }
  getCommitteeMembers(){
 
