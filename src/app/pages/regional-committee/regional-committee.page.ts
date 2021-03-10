@@ -11,6 +11,7 @@ import { User } from 'src/app/services/users';
 })
 export class RegionalCommitteePage implements OnInit {
   members: any[];
+  membersBackup: any[];
   src="/assets/images/dummy-user.png"
   constructor(
     private membersService:MembersService,
@@ -19,6 +20,7 @@ export class RegionalCommitteePage implements OnInit {
 
   async ngOnInit() {
     this.members=await this.initializeItems();
+    this.membersBackup=this.members;
   }
   async initializeItems(): Promise<any> {
     let membersList:any[]=[];
@@ -29,13 +31,19 @@ export class RegionalCommitteePage implements OnInit {
     return newarr;
     //return foodList;
   }
-  async filterItems(ev: any) {
+  async filterItems(ev) {
     // debugger;
-    let val = ev.target.value;
-  
+    this.members = this.membersBackup;
+    let val = ev.srcElement.value;
+    console.log("enterd value",val);
+    
+    // if (!val) {
+    //   return;
+    // }
     if (val && val.trim() !== '') {
       this.members = this.members.filter((user) => {
-        return user.firstName.toLowerCase().includes(val.toLowerCase());
+        let name=user.firstName+" "+user.lastName;
+        return name.toLowerCase().includes(val.toLowerCase());
       });
     } else {
       this.members = await this.initializeItems();

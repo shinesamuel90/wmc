@@ -12,6 +12,7 @@ import { UrlService } from 'src/app/services/url.service';
 })
 export class CommitteeMembersPage implements OnInit {
   members: any[];
+  membersBackup: any[];
   src="/assets/images/dummy-user.png"
   previousUrl: string = null;
   currentUrl: string = null;
@@ -23,6 +24,7 @@ export class CommitteeMembersPage implements OnInit {
  
   async ngOnInit() {
     this.members=await this.initializeItems();
+    this.membersBackup=this.members;
     // this.router.events.pipe(
     //   filter((event) => event instanceof NavigationEnd)
     // ).subscribe((event: NavigationEnd) => {
@@ -40,13 +42,15 @@ export class CommitteeMembersPage implements OnInit {
     return newarr;
     //return foodList;
   }
-  async filterItems(ev: any) {
+  async filterItems(ev) {
     // debugger;
-    let val = ev.target.value;
+    this.members = this.membersBackup;
+    let val = ev.srcElement.value;
   
     if (val && val.trim() !== '') {
       this.members = this.members.filter((user) => {
-        return user.firstName.toLowerCase().includes(val.toLowerCase());
+        let name=user.firstName+" "+user.lastName;
+        return name.toLowerCase().includes(val.toLowerCase());
       });
     } else {
       this.members = await this.initializeItems();

@@ -12,6 +12,7 @@ import { UrlService } from 'src/app/services/url.service';
 })
 export class MembersPage implements OnInit {
   members: any[]=[];
+  membersBackup: any[]=[];
   src = "/assets/images/dummy-user.png"
   province: any;
   previousUrl: string = null;
@@ -56,21 +57,24 @@ export class MembersPage implements OnInit {
 await (await this.membersService.getUsersByProvince(province)).forEach(doc=>{
 
   this.members.push(doc.data())
+  this.membersBackup.push(doc.data())
 })
 
-
+//this.membersBackup=this.members;
 
   }
-  async filterItems(ev: any) {
+  async filterItems(ev) {
     // debugger;
-    let val = ev.target.value;
+    this.members=this.membersBackup;
+    let val = ev.srcElement.value;
 
     if (val && val.trim() !== '') {
       this.members = this.members.filter((user) => {
-        return user.firstName.toLowerCase().includes(val.toLowerCase());
+        let name=user.firstName+" "+user.lastName;
+        return name.toLowerCase().includes(val.toLowerCase());
       });
     } else {
-      this.members = await this.initializeMembers(this.province);
+     // this.members = await this.initializeMembers(this.province);
     }
   }
   call() {
