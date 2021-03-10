@@ -13,10 +13,12 @@ import { Relation } from '../models/Relations';
 import { Plugins } from '@capacitor/core';
 import { LoginPage } from '../pages/login/login.page';
 const { Storage } =Plugins;
+import { firestore } from 'firebase';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+ 
  
  
   
@@ -280,7 +282,34 @@ console.log("AddFcmToken");
    return this.afs.collection('users').ref.doc(uid).update({'tokenId':token})
   //  return this.afs.collection('users').ref.doc(uid).collection('tokens').add({"token":token});
   }
+  updateProfile(user: any,uid:string,selCCode:any) {
+    console.log(user);
+    console.log(selCCode);
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${uid}`);
   
+  
+    const userData: any = {
+      displayName: user.firstName+" "+user.lastName,
+      lastName: user.lastName.trim(),
+      firstName: user.firstName.trim(),
+      mobile: {
+        countryCode:selCCode.pais,
+        dialCode:selCCode.code,
+        internationalNumber:selCCode.code+' '+user.mobileNumber.toString(),
+        nationalNumber:user.mobileNumber.toString(),
+        number:user.mobileNumber.toString()
+      },
+    
+      dobDate:firestore.Timestamp.fromDate(new Date(user.dob)),
+      anniversaryDate: firestore.Timestamp.fromDate(new Date(user.anndate)),
+      region:user.region.name,
+      country:user.country.name,
+      province:user.province.name
+    }
+    return userRef.set(userData, {
+      merge: true
+    })
+  }
 
   
 }

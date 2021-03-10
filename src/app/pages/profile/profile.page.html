@@ -51,11 +51,11 @@
 <ion-row>
       <ion-col size="6" class="col-no-padding-tb">
             <ion-label> Date Of Birth</ion-label>
-            <p> {{currentUser.dobDate.seconds * 1000|date: 'dd-MM-yyyy'}}</p>
+            <p *ngIf="currentUser.dobDate"> {{ currentUser.dobDate.seconds * 1000|date: 'dd-MM-yyyy'}}</p>
           </ion-col>
           <ion-col size="6" class="col-no-padding-tb">
             <ion-label> Anniversary</ion-label>
-            <p> {{currentUser.anniversaryDate.seconds * 1000|date: 'dd-MM-yyyy'}}</p>
+            <p *ngIf="currentUser.anniversaryDate"> {{currentUser.anniversaryDate.seconds * 1000|date: 'dd-MM-yyyy' }}</p>
           </ion-col>
           </ion-row>
 
@@ -71,16 +71,12 @@
               </ion-row>
     
 
-              <!-- <ion-row>
-                <ion-col size="6" class="col-no-padding-tb">
-                  <ion-label> Related to</ion-label>
-                  <p>Smitha</p>
+               <ion-row>
+                <ion-col >
+                  <ion-button class="block" (click)="editProfile(currentUser)">Edit Profile</ion-button>
                   </ion-col>
-                  <ion-col size="6" class="col-no-padding-tb">
-                    <ion-label> Relation</ion-label>
-                    <p>Husband</p>
-                  </ion-col>
-                  </ion-row> -->
+                 
+                  </ion-row> 
 
      
     </ion-card-content>

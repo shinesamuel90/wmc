@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardPage } from './dashboard.page';
 import { AlbumDataResolverService } from 'src/app/resolver/album-data-resolver.service';
 import { ProfileDataService } from 'src/app/resolver/profile-data.service';
+import { EditProfileResolverService } from 'src/app/resolver/edit-profile-resolver.service';
 
 const routes: Routes = [
   {
@@ -73,6 +74,13 @@ const routes: Routes = [
   {
     path: 'member-view',
     loadChildren: () => import('../member-view/member-view.module').then( m => m.MemberViewPageModule)
+  },
+  {
+    path: 'edit-profile',
+    resolve: {
+      special: EditProfileResolverService
+    },
+    loadChildren: () => import('../edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
   },
       
   // {

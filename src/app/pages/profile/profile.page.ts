@@ -47,5 +47,7 @@ export class ProfilePage implements OnInit {
   addRelations(){
     this.router.navigate(["/dashboard/tabs/add-relations", { 'id': this.currentUser.uid }]);
   }
-
+  editProfile(user:User){
+    this.router.navigate(['/dashboard/tabs/edit-profile',{'id':this.currentUser.uid}])
+  }
 }
