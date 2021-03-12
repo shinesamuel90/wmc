@@ -2,9 +2,9 @@ import { Injectable, NgZone } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 
 import { Router, ActivatedRoute } from '@angular/router';
-import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, from, Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Platform, ToastController } from '@ionic/angular';
 
@@ -14,10 +14,12 @@ import { Plugins } from '@capacitor/core';
 import { LoginPage } from '../pages/login/login.page';
 const { Storage } =Plugins;
 import { firestore } from 'firebase';
+import { switchMap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+ 
  
  
  
@@ -28,6 +30,7 @@ export class AuthService {
   authState :BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
   private eventAuthError = new BehaviorSubject<string>("");
   token= '';
+  private basePath = '/photos';
   constructor(public db: AngularFireDatabase,
     public afs: AngularFirestore,   // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
@@ -311,5 +314,32 @@ console.log("AddFcmToken");
     })
   }
 
-  
+  updateprofilePicUrl(downloadUrl: any, uid: string) {
+    return this.afs
+    .collection("users")
+    .doc(uid)
+    .set({ photoURL:downloadUrl,
+     
+          }, { merge: true });
+  }
+  updateProfilePic(file: any, uid: string):FilesUploadMetadata {
+    console.log(file.name);
+    const filePathCoverImage = `${this.basePath}/${file.name}`;
+        const storageRefCoverImage = this.storage.ref(filePathCoverImage);
+        const uploadTaskCoverIamge: AngularFireUploadTask=this.storage.upload(filePathCoverImage, file);
+        return {
+          uploadProgress$: uploadTaskCoverIamge.percentageChanges(),
+          downloadUrl$: this.getDownloadUrl$(uploadTaskCoverIamge, filePathCoverImage),
+        };
+     
+  }
+  getDownloadUrl$(uploadTask: AngularFireUploadTask, path: string): Observable<string> {
+    return from(uploadTask).pipe(
+      switchMap((_) => this.storage.ref(path).getDownloadURL()),
+    );
+  }
+}
+export interface FilesUploadMetadata {
+  uploadProgress$: Observable<number>;
+  downloadUrl$: Observable<string>;
 }

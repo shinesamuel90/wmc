@@ -1,3 +1,68 @@
 .submit-btn{
     width: 100%;
 }
+.parent-card
+{
+    ion-card-header
+    {
+
+    .profile-head
+    {
+           h3
+           {
+               margin: 0px;
+               font-family: 'Bree Serif', serif;
+           }
+           p
+           {   margin: 0px;
+               margin-top: 5px;
+               font-family: 'Bree Serif', serif;
+           }
+  
+
+        img.pro-image
+        {
+            width: 80px;
+            height: 80px;
+            border-radius: 11%;
+            margin: auto;
+
+            
+        }
+    }
+    }
+.family-member-head
+{
+  font-size: 15px;
+  padding-left: 8px;
+  color: #07080a;
+  margin: 0px;
+  margin-top: 10px;
+}
+    .col-no-padding-tb
+    {
+      padding-top: 0px !important;
+      padding-bottom: 0px !important;
+    }
+
+  .profile-contant
+  {
+    ion-label
+      {
+         font-size:12px;
+      }
+      p
+      {
+        font-weight: bold;
+     
+      }
+  }
+}
+#myFileInput{
+    position: absolute;
+    opacity: 0;
+  }
+  
+//   .myFakeUploadButton{
+//    /* Whatever you want */
+//   }

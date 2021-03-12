@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { CountriesService } from 'src/app/services/countries.service';
 import { IonicSelectableComponent } from 'ionic-selectable';
 import { User } from 'src/app/services/users';
+import { Observable } from 'rxjs';
 class Region {
   public id: string;
   public name: string;
@@ -89,7 +90,8 @@ export class EditProfilePage implements OnInit {
   countries: any;
   provinces: any;
   currentUser: User;
- 
+  uploadProgress$: Observable<number>;
+  src="/assets/images/dummy-user.png"
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -230,5 +232,28 @@ console.log("countries",response);
 
     });
   }
+  uploadFile(event) {
+     // The File object
+     const file = event.target.files[0];
+     console.log(file.name);
+     const { downloadUrl$, uploadProgress$ } = this.authService.updateProfilePic(event.target.files[0], this.currentUser.uid)
+     this.uploadProgress$ = uploadProgress$;
+     downloadUrl$
  
+       .subscribe((downloadUrl) => {
+        // this.submitted = false;
+         const oldProfilePicUrl = this.currentUser.photoURL
+         this.authService.updateprofilePicUrl(downloadUrl, this.currentUser.uid).then(a => {
+           console.log(a);
+           this.currentUser.photoURL=downloadUrl
+ 
+ 
+           })
+ 
+ 
+         });
+       
+      
+     
+  }
 }

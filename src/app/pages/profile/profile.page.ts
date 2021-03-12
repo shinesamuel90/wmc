@@ -13,6 +13,7 @@ export class ProfilePage implements OnInit {
   uid: any;
   currentUser: User;
   relations: Relation[]=[];
+  src="/assets/images/dummy-user.png"
   constructor(private authService: AuthService,
     private activeRoute: ActivatedRoute,
     private router:Router

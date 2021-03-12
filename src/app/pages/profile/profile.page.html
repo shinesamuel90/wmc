@@ -18,7 +18,7 @@
     <ion-card-header>
       <ion-row class="profile-head">
         <ion-col size="4">
-          <img [src]="currentUser.photoURL" class="pro-image" />
+          <img [src]="currentUser.photoURL?currentUser.photoURL:src" class="pro-image" />
           <!-- <img src="assets/images/shabu_1.jpeg" class="pro-image" /> -->
           </ion-col>
           <ion-col size="8">
