@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { IonicSelectableComponent } from 'ionic-selectable';
 import { CountriesService } from 'src/app/services/countries.service';
 import { ToastController } from '@ionic/angular';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-sign-up',
@@ -79,13 +80,14 @@ export class SignUpPage implements OnInit {
   data: any;
   countries: any;
   provinces: any;
-
+  admins:string[]=[];
   constructor(
     private authService: AuthService,
     private router: Router,
     private formBuilder: FormBuilder,
     private countryService: CountriesService,
-    public toastController: ToastController
+    public toastController: ToastController,
+    private httpClient:HttpClient
   ) {
 
     this.regions = [
@@ -123,9 +125,21 @@ export class SignUpPage implements OnInit {
 
   addUserData(value: any) {
     this.authService.register(value)
-      .then(res => {
-        console.log(res);
-
+      .then(async res => {
+// await this.authService.getAdmins().then().
+//         console.log(res);
+        await (await this.authService.getAdmins()).forEach(doc=>{
+          this.admins.push(doc.data().email)
+          // this.members.push(doc.data())
+          // this.membersBackup.push(doc.data())
+        })
+        let params = new HttpParams();
+        params = params.append('dest',JSON.stringify(this.admins));
+       // params = params.append('name',element.displayName);
+        this.httpClient.get("https://us-central1-insysmemalayalee.cloudfunctions.net/sendMailToAdmins").subscribe(data=>{
+          console.log(data);
+          
+        });
         this.toastController.create({
           message: 'Your account has been created. Please log in.',
           duration: 2000

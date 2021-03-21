@@ -23,6 +23,7 @@ export class AuthService {
  
  
  
+ 
   
   
   
@@ -337,6 +338,19 @@ console.log("AddFcmToken");
     return from(uploadTask).pipe(
       switchMap((_) => this.storage.ref(path).getDownloadURL()),
     );
+  }
+
+  async getAdmins() {
+    const membersRef = this.afs.collection('users').ref;
+const snapshot = await membersRef.where('role.admin', '==', true).get();
+if (snapshot.empty) {
+  console.log('No matching documents.');
+  return;
+}  
+snapshot.forEach(doc => {
+  console.log(doc.id, '=>', doc.data());
+});
+return snapshot
   }
 }
 export interface FilesUploadMetadata {
