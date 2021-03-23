@@ -55,11 +55,21 @@ private urlService:UrlService
     //     console.log("member", data.payload.data());
     //     this.currentUser = data.payload.data();
     //     this.relations=[];
-    //    // this.getRelations(this.currentUser.uid);
+     this.getRelations(this.currentUser.uid);
     //     console.log(this.currentUser);
 
     //   }
     // });
+  }
+  getRelations(uid: string) {
+    this.authService.getRelations(uid).subscribe(data=>{
+      data.docs.forEach(doc=>{
+        this.relations.push({name:doc.data().name,relation:doc.data().relation,mobile:doc.data().mobile,
+         email:doc.data().email});
+       // console.log(doc.data());
+        
+      })
+     })
   }
 
 }
