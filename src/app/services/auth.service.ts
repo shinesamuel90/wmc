@@ -189,7 +189,9 @@ this.loadToken()
           //this.router.navigate(['sign-in']);
           resolve(result);
           
-        });
+        }).catch(error => {
+          reject(error)
+        })
           // res => resolve(res),
           // err => reject(err)
      
@@ -212,7 +214,8 @@ this.loadToken()
         lastName: user.lastName.trim(),
         firstName: user.firstName.trim(),
         role: {
-          user: true
+          user: true,
+          admin:false
         },
         //country:user.countryCode,
         mobile: {

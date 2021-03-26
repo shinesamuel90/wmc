@@ -129,29 +129,43 @@ export class SignUpPage implements OnInit {
 // await this.authService.getAdmins().then().
 //         console.log(res);
         await (await this.authService.getAdmins()).forEach(doc=>{
+          if(doc.data().email){
           this.admins.push(doc.data().email)
+          }
           // this.members.push(doc.data())
           // this.membersBackup.push(doc.data())
         })
         let params = new HttpParams();
-        params = params.append('dest',JSON.stringify(this.admins));
+        console.log("res.user.uid",res.user.uid);
+        
+        params = params.append('uid',res.user.uid);
        // params = params.append('name',element.displayName);
-        this.httpClient.get("https://us-central1-insysmemalayalee.cloudfunctions.net/sendMailToAdmins").subscribe(data=>{
+        this.httpClient.get("https://us-central1-insysmemalayalee.cloudfunctions.net/sendMailToAdmins",{params: params}).subscribe(data=>{
           console.log(data);
-          
+         
         });
         this.toastController.create({
           message: 'Your account has been created. Please log in.',
           duration: 2000
         }).then((toast) => {
           toast.present();
+          this.validations_form.reset()
           this.router.navigate(['']);
         })
 
       }, err => {
         console.log(err);
+       // alert(err);
+        
         this.errorMessage = err.message;
         this.successMessage = "";
+        this.toastController.create({
+          message: err.message,
+          duration: 2000
+        }).then((toast) => {
+          toast.present();
+          
+        })
       })
   }
 
