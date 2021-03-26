@@ -7,6 +7,7 @@ import { CountriesService } from 'src/app/services/countries.service';
 import { IonicSelectableComponent } from 'ionic-selectable';
 import { User } from 'src/app/services/users';
 import { Observable } from 'rxjs';
+import { isString } from 'util';
 class Region {
   public id: string;
   public name: string;
@@ -92,6 +93,7 @@ export class EditProfilePage implements OnInit {
   currentUser: User;
   uploadProgress$: Observable<number>;
   src="/assets/images/dummy-user.png"
+  nationalNumber: any;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -141,11 +143,16 @@ export class EditProfilePage implements OnInit {
         console.log("member", data.payload.data());
         this.currentUser = data.payload.data();
         this.selectedRegion={id:this.currentUser.region,name:this.currentUser.region}
+        if(isString(this.currentUser.mobile.nationalNumber)){
+          this.nationalNumber=Number(this.currentUser.mobile.nationalNumber.replace(/\s/g, ""))
+        }else{
+          this.nationalNumber=this.currentUser.mobile.nationalNumber
+        }
         this.profile_form.patchValue({
           firstName: this.currentUser.firstName,
           lastName: this.currentUser.lastName,
           countryCode:this.currentUser.mobile.dialCode,
-          mobileNumber:Number(this.currentUser.mobile.nationalNumber.replace(/\s/g, "")),
+          mobileNumber:this.nationalNumber,
           region:this.selectedRegion,
           country:{id:this.currentUser.country,name:this.currentUser.country},
           province:{shortCode:this.currentUser.province,name:this.currentUser.province},
