@@ -30,7 +30,7 @@
         <!-- "assets/images/image1.jpg" -->
         <img src="{{ article.coverImageUrl!= null ?article.coverImageUrl : src}}" class="card-image" />
         {{article.description}}
-        <ion-row>
+        <ion-row *ngIf="article.url">
           <ion-col size="12">
             <button class="view-more primary-btn" (click)="readMore(article.url)">View More</button>
           </ion-col>
