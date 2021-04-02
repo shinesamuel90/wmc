@@ -122,6 +122,7 @@ export class SignUpPage implements OnInit {
       province: new FormControl('', Validators.compose([Validators.required])),
       phoneNumber: new FormControl('',Validators.compose([Validators.required]))
     });
+    
   }
 
   addUserData(value: any) {
@@ -214,6 +215,7 @@ export class SignUpPage implements OnInit {
 
     });
   }
+  get phoneNumber() { return this.validations_form.get('phoneNumber'); }
 }
 
 class Region {
