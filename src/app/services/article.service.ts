@@ -25,7 +25,7 @@ export class ArticleService {
 
   getArticles(): AngularFirestoreCollection<FileUpload> {
 
-    return this.fstore.collection('uploads');
+    return this.fstore.collection('uploads',ref => ref.orderBy('createdAt','desc'));
   }
 
 
