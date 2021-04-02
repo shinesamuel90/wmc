@@ -218,13 +218,14 @@ this.loadToken()
           admin:false
         },
         //country:user.countryCode,
-        mobile: {
-          countryCode:user.countryCode.pais,
-          dialCode:user.countryCode.code,
-          internationalNumber:user.countryCode.code+''+user.mobileNumber,
-          nationalNumber:user.mobileNumber,
-          number:user.mobileNumber
-        },
+        // mobile: {
+        //   countryCode:user.countryCode.pais,
+        //   dialCode:user.countryCode.code,
+        //   internationalNumber:user.countryCode.code+''+user.mobileNumber,
+        //   nationalNumber:user.mobileNumber,
+        //   number:user.mobileNumber
+        // },
+        mobile:user.phoneNumber,
         sex: user.sex,
         is_committee_member:user.is_committee_member,
         designation: user.designation,
@@ -238,7 +239,8 @@ this.loadToken()
         enable:false,
         region:user.region.name,
         country:user.country.name,
-        province:user.province.name
+        province:user.province.name,
+        phoneNumber:user.phoneNumber
       }
       return userRef.set(userData, {
         merge: true

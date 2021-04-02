@@ -115,11 +115,12 @@ export class SignUpPage implements OnInit {
       ])),
       firstName: new FormControl('', Validators.compose([Validators.required])),
       lastName: new FormControl('', Validators.compose([Validators.required])),
-      mobileNumber: new FormControl('', Validators.compose([Validators.compose([Validators.maxLength(10), Validators.required])])),
-      countryCode: new FormControl('', Validators.compose([Validators.required])),
+     // mobileNumber: new FormControl('', Validators.compose([Validators.compose([Validators.maxLength(10), Validators.required])])),
+      //countryCode: new FormControl('', Validators.compose([Validators.required])),
       region: new FormControl('', Validators.compose([Validators.required])),
       country: new FormControl('', Validators.compose([Validators.required])),
-      province: new FormControl('', Validators.compose([Validators.required]))
+      province: new FormControl('', Validators.compose([Validators.required])),
+      phoneNumber: new FormControl('',Validators.compose([Validators.required]))
     });
   }
 

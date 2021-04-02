@@ -8,6 +8,7 @@ import { SignUpPageRoutingModule } from './sign-up-routing.module';
 
 import { SignUpPage } from './sign-up.page';
 import { IonicSelectableModule } from 'ionic-selectable';
+import { IonIntlTelInputModule } from 'ion-intl-tel-input';
 @NgModule({
   imports: [
     CommonModule,
@@ -15,7 +16,8 @@ import { IonicSelectableModule } from 'ionic-selectable';
     ReactiveFormsModule,
     IonicModule,
     SignUpPageRoutingModule,
-    IonicSelectableModule
+    IonicSelectableModule,
+    IonIntlTelInputModule
   ],
   declarations: [SignUpPage]
 })

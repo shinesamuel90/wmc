@@ -32,6 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProfileDataService } from './resolver/profile-data.service';
 import { VideoService } from './services/video.service';
 import { AutoLoginGuard } from './guards/auto-login.guard';
+import { IonIntlTelInputModule } from 'ion-intl-tel-input';
 
 
 
@@ -53,7 +54,8 @@ import { AutoLoginGuard } from './guards/auto-login.guard';
     AngularFireStorageModule,
     AngularFirestoreModule,
     IonicSelectableModule,
-    HttpClientModule
+    HttpClientModule,
+    IonIntlTelInputModule
   ],
   providers: [
     StatusBar,
